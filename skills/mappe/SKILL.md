@@ -45,10 +45,11 @@ Ask whether to include a Deckblatt. Recommend one for Mittelstand and public sec
 Run the renderer:
 
 ```bash
-node tools/mappe.mjs DATA_DIR/jobs/[folder]
+node tools/mappe.mjs DATA_DIR/jobs/[folder]           # language from language.md
+node tools/mappe.mjs DATA_DIR/jobs/[folder] --lang de # override
 ```
 
-It reads `language.md` to pick the German or English document set, renders the
+It reads the **`Application language` line** of `language.md` to pick the German or English document set — not the whole file, because the Evidence block there legitimately names the ad's language, which is often German for an application deliberately made in English. If that decision was **Both**, it builds both and names them `bewerbungsmappe-de.pdf` and `bewerbungsmappe-en.pdf`. It renders the
 Anschreiben and Lebenslauf to A4 with DIN 5008 margins via headless Chrome,
 appends any Zeugnis PDFs from `DATA_DIR/zeugnisse/` newest-first, and prints
 every check it ran.

@@ -14,8 +14,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent
 SKILLS = sorted(p for p in (ROOT / "skills").iterdir() if p.is_dir())
-MD = [p for p in ROOT.rglob("*.md") if ".git" not in p.parts]
+SKIP_DIRS = {".git", ".paperwork", "node_modules"}
+MD = [p for p in ROOT.rglob("*.md") if not SKIP_DIRS & set(p.parts)]
 problems = []
+versions = {}
 
 
 def fail(msg):
@@ -78,6 +80,28 @@ for mf in [".claude-plugin/plugin.json", ".claude-plugin/marketplace.json"]:
     got = data.get("name") or data.get("plugins", [{}])[0].get("name")
     if got != "paperwork":
         fail(f"{mf}: name is {got!r}, expected 'paperwork'")
+    for v in [data.get("version"), *(p.get("version") for p in data.get("plugins", []))]:
+        if v is not None:
+            versions.setdefault(v, []).append(mf)
+
+# 4b. no DATA_DIR path drift
+#
+# Skills that write to a path the tree doesn't document leave the user unable
+# to find their own files, and reviewers unable to see what the tool touches.
+TREE = (ROOT / "shared/references/data-directory.md").read_text()
+seen = {}
+for p in MD:
+    if p.name == "data-directory.md":
+        continue
+    for m in re.findall(r"DATA_DIR/([A-Za-z0-9_./\[\]-]+)", p.read_text()):
+        seen.setdefault(m.rstrip(".,)`"), set()).add(str(p.relative_to(ROOT)))
+for path, users in sorted(seen.items()):
+    segs = [s for s in path.split("/") if s and not s.startswith("[")]
+    if segs and segs[-1] not in TREE:
+        fail(f"DATA_DIR/{path} is written by {', '.join(sorted(users))} but is not in the data-directory tree")
+
+if len(versions) > 1:
+    fail("manifest versions disagree: " + "; ".join(f"{v} in {', '.join(f)}" for v, f in versions.items()))
 
 # 5. safety invariants must survive edits
 #

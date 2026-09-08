@@ -68,7 +68,7 @@ Same failure mode as anywhere, with German specifics:
 
 ### „(m/w/d)"
 
-Required by the AGG for non-discriminatory ads. Its absence is a minor compliance sloppiness signal, not a reason to skip. **Reproduce the job title exactly as advertised, including `(m/w/d)` or `(all genders)`, in the Betreff of the Anschreiben.**
+The AGG requires ads to be non-discriminatory; it does not mandate this exact string. `(m/w/d)` is the convention that settled after a third gender option was legally recognised, and `(all genders)` or `(m/f/x)` do the same job. Its absence is mild sloppiness, not a reason to skip. **Reproduce the job title exactly as advertised, including `(m/w/d)` or `(all genders)`, in the Betreff of the Anschreiben.**
 
 ---
 

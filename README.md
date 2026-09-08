@@ -94,7 +94,7 @@ Then:
 /paperwork:apply <url>
 ```
 
-14 skills, ~550 tokens always-on. Works in any agent CLI that reads `AGENTS.md`.
+14 skills, ~550 tokens always-on. `AGENTS.md` routes other agent CLIs to the same instruction files, though Claude Code is the only one this has been exercised in.
 
 ## Commands
 

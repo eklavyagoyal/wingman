@@ -19,6 +19,7 @@ If the working directory looks like an ephemeral session path (e.g. `/sessions/.
 ```
 DATA_DIR/
   resume/                    # original CV as provided (PDF / DOCX / MD)
+    resume.md                # written here when the user pastes text instead
   profile.md                 # work history + German-specific facts
   preferences.md             # matching rules, dealbreakers, salary floor
   application-data.md        # cached form answers
@@ -27,6 +28,7 @@ DATA_DIR/
   contacts.csv               # LinkedIn / Xing connection export
   tracker.md                 # single source of truth for applications
   job-history.md             # raw search log, every job ever seen
+  patterns.md                # what is actually working, from /paperwork:patterns
   jobs/
     <company-slug>-<date>/
       posting.md             # the fetched ad, employer URL at the top
@@ -37,6 +39,8 @@ DATA_DIR/
       anschreiben-de.md      # DIN 5008 letter (if German)
       cover-letter-en.md     # cover letter    (if English)
       bewerbungsmappe.pdf    # assembled single PDF, if the employer wants one
+                             #   (-de.pdf / -en.pdf when both languages were built)
+      interview-prep.md      # questions, stories, and prep notes for this role
       applied.md             # what was submitted, when, and how
 ```
 

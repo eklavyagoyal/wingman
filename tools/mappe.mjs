@@ -31,12 +31,17 @@ const CHROME_CANDIDATES = [
   "/usr/bin/chromium-browser",
 ];
 
+// Resolve a binary by scanning PATH directly. Avoids spawning a shell, which
+// Node 26 deprecates for argument-passing and which is an injection surface.
 const which = (cmd) => {
-  try {
-    return execFileSync("command", ["-v", cmd], { shell: true, encoding: "utf8" }).trim() || null;
-  } catch {
-    return null;
+  for (const dir of (process.env.PATH || "").split(":")) {
+    if (!dir) continue;
+    const full = join(dir, cmd);
+    try {
+      if (statSync(full).isFile()) return full;
+    } catch { /* not here */ }
   }
+  return null;
 };
 
 const findChrome = () =>
@@ -171,18 +176,57 @@ function wrap(sections) {
   return `<!doctype html><html lang="de"><head><meta charset="utf-8"><style>\n${css}\n</style></head><body>\n${body}\n</body></html>`;
 }
 
-function pickDocs(folder) {
-  const has = (f) => existsSync(join(folder, f));
-  const lang = has("language.md") && /Anwendungssprache|Application language/i.test(readFileSync(join(folder, "language.md"), "utf8"))
-    ? (/\b(Deutsch|German)\b/i.test(readFileSync(join(folder, "language.md"), "utf8")) ? "de" : "en")
-    : (has("anschreiben-de.md") ? "de" : "en");
+// Read ONLY the decision line. The Evidence block in language.md legitimately
+// names the ad's language, which is often German for an application that was
+// deliberately made in English - scanning the whole file inverts the choice.
+function declaredLang(folder) {
+  const f = join(folder, "language.md");
+  if (!existsSync(f)) return null;
+  const m = readFileSync(f, "utf8").match(
+    /^\s*[-*]?\s*\*{0,2}Application language\*{0,2}\s*:\s*(.+)$/im,
+  );
+  if (!m) return null;
+  const v = m[1].trim();
+  if (/\bboth\b|\bbeide\b/i.test(v)) return "both";
+  if (/\b(deutsch|german|de)\b/i.test(v)) return "de";
+  if (/\b(english|englisch|en)\b/i.test(v)) return "en";
+  return null;
+}
 
-  const letter = lang === "de" ? "anschreiben-de.md" : "cover-letter-en.md";
-  const cv = lang === "de" ? "resume-de.md" : "resume-en.md";
+const DOCS = {
+  de: { letter: "anschreiben-de.md", cv: "resume-de.md" },
+  en: { letter: "cover-letter-en.md", cv: "resume-en.md" },
+};
+
+function pickDocs(folder, lang) {
+  const has = (f) => existsSync(join(folder, f));
+  const { letter, cv } = DOCS[lang];
   return { lang, letter: has(letter) ? letter : null, cv: has(cv) ? cv : null };
 }
 
-function build(folder) {
+// Which language(s) to build: an explicit flag wins, then the recorded
+// decision, then whichever document set is actually on disk.
+function resolveLangs(folder, override) {
+  if (override) return [override];
+  const declared = declaredLang(folder);
+  const present = ["de", "en"].filter(
+    (l) => existsSync(join(folder, DOCS[l].letter)) || existsSync(join(folder, DOCS[l].cv)),
+  );
+  if (declared === "both") return present.length ? present : ["de"];
+  if (declared && present.includes(declared)) return [declared];
+  if (declared && !present.length) return [declared];
+  if (declared) {
+    // Decision recorded, but only the other language's documents exist.
+    console.error(
+      `WARN  language.md says ${declared}, but only the ${present.join("/")} document set exists.`,
+    );
+    console.error("      Rendering what is on disk. Re-run tailor-cv/anschreiben if that is wrong.\n");
+    return present;
+  }
+  return present.length ? present : ["de"];
+}
+
+function build(folder, lang, outName) {
   const report = [];
   const chrome = findChrome();
   if (!chrome) {
@@ -190,9 +234,10 @@ function build(folder) {
     process.exit(2);
   }
 
-  const { lang, letter, cv } = pickDocs(folder);
+  const { letter, cv } = pickDocs(folder, lang);
   if (!letter && !cv) {
-    console.error(`Nothing to render in ${folder}. Expected anschreiben-de.md / resume-de.md (or the -en variants).`);
+    const { letter: l, cv: c } = DOCS[lang];
+    console.error(`Nothing to render for ${lang} in ${folder}. Expected ${l} or ${c}.`);
     process.exit(2);
   }
   report.push(`language: ${lang}`);
@@ -214,10 +259,10 @@ function build(folder) {
 
   // Per-document page counts, so the one-page Anschreiben rule is checkable.
   const counts = {};
-  for (const [name, src] of [["Anschreiben", letter], ["Lebenslauf", cv]]) {
+  for (const [name, src] of [["Letter", letter], ["CV", cv]]) {
     if (!src) continue;
     const p = join(tmp, `${name}.pdf`);
-    writeFileSync(join(tmp, `${name}.html`), wrap([{ md: readFileSync(join(folder, src), "utf8"), letter: name === "Anschreiben" }]));
+    writeFileSync(join(tmp, `${name}.html`), wrap([{ md: readFileSync(join(folder, src), "utf8"), letter: name === "Letter" }]));
     renderPdf(chrome, join(tmp, `${name}.html`), p);
     counts[name] = pageCount(p);
   }
@@ -230,7 +275,7 @@ function build(folder) {
     parts.push(...zeugnisse.map((f) => join(zDir, f)));
   }
 
-  const out = join(folder, "bewerbungsmappe.pdf");
+  const out = join(folder, outName);
   const merger = concatPdfs(parts, out);
   if (!merger) {
     writeFileSync(out, readFileSync(corePdf));
@@ -244,15 +289,17 @@ function build(folder) {
 
   // Report every check. A silent problem here costs a real application.
   const checks = [];
-  if (counts.Anschreiben != null) {
-    checks.push(counts.Anschreiben === 1
-      ? "PASS  Anschreiben is 1 page"
-      : `FAIL  Anschreiben is ${counts.Anschreiben} pages - must be exactly 1. Cut it.`);
+  const letterName = lang === "de" ? "Anschreiben" : "Cover letter";
+  const cvName = lang === "de" ? "Lebenslauf" : "CV";
+  if (counts.Letter != null) {
+    checks.push(counts.Letter === 1
+      ? `PASS  ${letterName} is 1 page`
+      : `FAIL  ${letterName} is ${counts.Letter} pages - must be exactly 1. Cut it.`);
   }
-  if (counts.Lebenslauf != null) {
-    checks.push(counts.Lebenslauf <= 2
-      ? `PASS  Lebenslauf is ${counts.Lebenslauf} page(s)`
-      : `FAIL  Lebenslauf is ${counts.Lebenslauf} pages - maximum is 2. Cut bullets from the oldest roles.`);
+  if (counts.CV != null) {
+    checks.push(counts.CV <= 2
+      ? `PASS  ${cvName} is ${counts.CV} page(s)`
+      : `FAIL  ${cvName} is ${counts.CV} pages - maximum is 2. Cut bullets from the oldest roles.`);
   }
   checks.push(bytes <= MAX_BYTES
     ? `PASS  ${(bytes / 1024 / 1024).toFixed(2)} MB, under the 5 MB portal cap`
@@ -260,7 +307,7 @@ function build(folder) {
   if (zeugnisse.length) checks.push(`PASS  ${zeugnisse.length} Zeugnis PDF(s) appended (${merger})`);
   else if (merger) checks.push('NOTE  no Zeugnisse appended - write "Zeugnisse werden auf Wunsch nachgereicht" in the Anlagen line');
 
-  console.log(`\nbewerbungsmappe.pdf — ${total ?? "?"} pages, ${(bytes / 1024 / 1024).toFixed(2)} MB`);
+  console.log(`\n${outName} — ${total ?? "?"} pages, ${(bytes / 1024 / 1024).toFixed(2)} MB`);
   console.log(`  ${out}\n`);
   for (const r of report) console.log(`  ${r}`);
   console.log();
@@ -317,16 +364,35 @@ function selftest() {
   assert(!mdToHtml("Meine Gehaltsvorstellung liegt bei 75.000 EUR", { letter: true }).includes('class="date"'),
     "ordinary paragraphs are untouched");
 
-  // doc selection
-  const picked = pickDocs(dir);
-  assert(picked.lang === "de", "German language.md selects the German documents");
-  assert(picked.letter === "anschreiben-de.md" && picked.cv === "resume-de.md", "picks both documents");
+  // language resolution - regression: the Evidence block names the ad's
+  // language, which must not override the recorded decision
+  assert(declaredLang(dir) === "de", "reads the recorded decision");
+  const enDir = mkdtempSync(join(tmpdir(), "mappe-en-"));
+  writeFileSync(join(enDir, "language.md"),
+    "# Language Decision\n\n- **Application language**: English\n\n## Evidence\n- Ad language: German\n");
+  writeFileSync(join(enDir, "cover-letter-en.md"), "Dear Hiring Manager,\n\nHello.\n\nRegards,\nJana\n");
+  writeFileSync(join(enDir, "resume-en.md"), "# Jana Beispiel\n\nEngineer.\n");
+  assert(declaredLang(enDir) === "en",
+    "an English decision survives a German ad language in the Evidence block");
+  assert(resolveLangs(enDir, null)[0] === "en", "resolves to the English document set");
+  assert(pickDocs(enDir, "en").letter === "cover-letter-en.md", "picks the English letter");
+
+  const bothDir = mkdtempSync(join(tmpdir(), "mappe-both-"));
+  writeFileSync(join(bothDir, "language.md"), "- **Application language**: Both\n");
+  writeFileSync(join(bothDir, "anschreiben-de.md"), "Sehr geehrte Damen und Herren,\n\nguten Tag.\n");
+  writeFileSync(join(bothDir, "cover-letter-en.md"), "Dear Hiring Manager,\n\nHello.\n");
+  assert(declaredLang(bothDir) === "both", "reads a Both decision");
+  assert(resolveLangs(bothDir, null).length === 2, "Both builds two Mappen");
+  assert(resolveLangs(bothDir, "de").join() === "de", "--lang overrides the recorded decision");
+
+  const picked = pickDocs(dir, "de");
+  assert(picked.letter === "anschreiben-de.md" && picked.cv === "resume-de.md", "picks both German documents");
 
   if (!findChrome()) {
     console.log("skip - no Chrome found, PDF rendering not exercised");
     return;
   }
-  build(dir);
+  build(dir, "de", "bewerbungsmappe.pdf");
   const out = join(dir, "bewerbungsmappe.pdf");
   assert(existsSync(out), "PDF is produced");
   assert(statSync(out).size > 1000, "PDF is non-trivial in size");
@@ -334,14 +400,31 @@ function selftest() {
   assert(pageCount(out) >= 2, "PDF has a page per document");
 }
 
-const arg = process.argv[2];
+const argv = process.argv.slice(2);
+const arg = argv[0];
+const langFlag = (() => {
+  const i = argv.indexOf("--lang");
+  if (i === -1) return null;
+  const v = (argv[i + 1] || "").toLowerCase();
+  if (v !== "de" && v !== "en") {
+    console.error("--lang takes de or en");
+    process.exit(2);
+  }
+  return v;
+})();
+
 if (!arg || arg === "--help") {
-  console.log("usage: node tools/mappe.mjs <job-folder> | --selftest");
+  console.log("usage: node tools/mappe.mjs <job-folder> [--lang de|en]");
+  console.log("       node tools/mappe.mjs --selftest");
   process.exit(arg ? 0 : 2);
 } else if (arg === "--selftest") {
   selftest();
 } else {
   const folder = resolve(arg);
   if (!existsSync(folder)) { console.error(`No such folder: ${folder}`); process.exit(2); }
-  build(folder);
+  const langs = resolveLangs(folder, langFlag);
+  for (const lang of langs) {
+    const outName = langs.length > 1 ? `bewerbungsmappe-${lang}.pdf` : "bewerbungsmappe.pdf";
+    build(folder, lang, outName);
+  }
 }

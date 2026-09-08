@@ -2,18 +2,20 @@
 
 Check before proceeding. If a required file is missing, show the message and stop — do not improvise around missing data.
 
-| File | setup | job-search | evaluate | tailor-cv | anschreiben | mappe | apply | zeugnis | network-scan | tracker | interview-prep | followup | visa |
-|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| `resume/*` | — | req | req | req | req | req | req | — | req | — | req | — | — |
-| `preferences.md` | — | req | req | — | — | — | — | — | req | — | — | — | — |
-| `profile.md` | — | rec | req | **req** | **req** | — | rec | — | rec | — | req | — | req |
-| `language.md` (job) | — | — | — | req | req | req | req | — | — | — | — | — | — |
-| `contacts.csv` | — | opt | — | — | — | — | — | — | req | — | — | — | — |
-| `zeugnisse/*` | — | — | — | opt | — | rec | opt | req | — | — | — | — | — |
-| `application-data.md` | — | — | — | — | — | — | created | — | — | — | — | — | — |
-| `tracker.md` | — | created | created | — | — | — | updated | — | — | req | — | req | — |
+| File | setup | job-search | evaluate | tailor-cv | anschreiben | mappe | apply | zeugnis | network-scan | tracker | interview-prep | followup | patterns | visa |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| `resume/*` | — | req | req | req | req | req | req | — | req | — | req | — | — |  — |
+| `preferences.md` | — | req | req | — | — | — | — | — | req | — | — | — | — |  — |
+| `profile.md` | — | rec | req | **req** | **req** | — | rec | — | rec | — | req | — | — |  req |
+| `language.md` (job) | — | — | — | req | req | req | req | — | — | — | — | — | — |  — |
+| `contacts.csv` | — | opt | — | — | — | — | — | — | req | — | — | — | — |  — |
+| `zeugnisse/*` | — | — | — | opt | — | rec | opt | req | — | — | — | — | — |  — |
+| `application-data.md` | — | — | — | — | — | — | created | — | — | — | — | — | — |  — |
+| `tracker.md` | — | created | created | — | — | — | updated | — | — | req | — | req | req |  — |
 
 `req` required · `rec` recommended, warn and continue · `opt` used if present · `created` made if absent
+
+`patterns` additionally needs roughly 15+ logged applications before its output means anything — it reports raw counts instead of percentages below that.
 
 ## Messages
 

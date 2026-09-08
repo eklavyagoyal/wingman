@@ -1,7 +1,17 @@
 {
   "name": "paperwork",
   "description": "Get hired in Germany. Finds German jobs, decides whether to apply in German or English, and writes a Lebenslauf and DIN 5008 Anschreiben that read like a native wrote them.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
-  "keywords": ["job-search", "germany", "bewerbung", "lebenslauf", "anschreiben", "resume", "cover-letter", "career", "dach"]
+  "keywords": [
+    "job-search",
+    "germany",
+    "bewerbung",
+    "lebenslauf",
+    "anschreiben",
+    "resume",
+    "cover-letter",
+    "career",
+    "dach"
+  ]
 }
