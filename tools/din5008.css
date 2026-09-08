@@ -1,0 +1,76 @@
+/* Print geometry for German application documents.
+ *
+ * Handles the mechanical half of DIN 5008: A4, margins sized for a window
+ * envelope, single line spacing, and a business typeface. The *content* order
+ * (Betreff, Anrede, Anlagen) is enforced by the anschreiben skill, not here -
+ * this file cannot know which paragraph is the Betreff.
+ */
+
+@page {
+  size: A4;
+  /* DIN 5008: 25mm left, 20mm right. Top left for the letter's own header. */
+  margin: 20mm 20mm 20mm 25mm;
+}
+
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.35;
+  color: #000;
+  margin: 0;
+  hyphens: auto;
+}
+
+/* Each document starts a new sheet. */
+section.doc { break-before: page; }
+section.doc:first-of-type { break-before: auto; }
+
+h1 { font-size: 15pt; margin: 0 0 10mm; font-weight: 700; letter-spacing: .01em; }
+h2 {
+  font-size: 11.5pt;
+  margin: 7mm 0 2.5mm;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  border-bottom: .4pt solid #000;
+  padding-bottom: 1mm;
+  break-after: avoid;
+}
+h3 { font-size: 11pt; margin: 4mm 0 1.5mm; font-weight: 700; break-after: avoid; }
+
+p { margin: 0 0 3.6mm; orphans: 2; widows: 2; }
+
+/* Address and sender blocks are line-per-line, so single newlines are
+ * rendered as hard breaks by the converter. */
+br { line-height: 1.35; }
+
+ul { margin: 0 0 3.6mm; padding-left: 5mm; }
+li { margin-bottom: 1.2mm; orphans: 2; widows: 2; }
+
+/* The tabular Lebenslauf: dates in a narrow left column, content right. */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 4mm;
+  font-size: 10.5pt;
+}
+td, th { vertical-align: top; padding: 1.1mm 3mm 1.1mm 0; text-align: left; }
+th { font-weight: 700; }
+table tr > td:first-child,
+table tr > th:first-child { width: 34mm; white-space: nowrap; }
+tr { break-inside: avoid; }
+
+hr { border: 0; border-top: .4pt solid #000; margin: 5mm 0; }
+
+strong { font-weight: 700; }
+em { font-style: italic; }
+code { font-family: "SF Mono", Menlo, monospace; font-size: 9.5pt; }
+
+/* The date line in a letter, right-aligned per DIN 5008. */
+.date { text-align: right; }
+
+/* DIN 5008: blank space between the Grussformel and the typed name, where a
+ * signature goes. Applied only inside a letter. */
+p.signoff { margin-bottom: 18mm; }

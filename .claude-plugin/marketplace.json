@@ -1,0 +1,28 @@
+{
+  "name": "paperwork",
+  "owner": {
+    "name": "Eklavya Goyal"
+  },
+  "metadata": {
+    "description": "Get hired in Germany - German-native job search, CV, and application tooling"
+  },
+  "plugins": [
+    {
+      "name": "paperwork",
+      "source": "./",
+      "description": "Get hired in Germany. German/English application-language decision, tabellarischer Lebenslauf, DIN 5008 Anschreiben, Arbeitszeugnis decoding, Blue Card eligibility, Personio/softgarden form filling.",
+      "version": "0.1.0",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": [
+        "job-search",
+        "germany",
+        "bewerbung",
+        "lebenslauf",
+        "anschreiben",
+        "career",
+        "dach"
+      ]
+    }
+  ]
+}
