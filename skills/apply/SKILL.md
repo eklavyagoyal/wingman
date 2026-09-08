@@ -20,7 +20,7 @@ CV required. Load `application-data.md` if it exists (created in Step 2). Load `
 - **`last`** → most recently modified job folder; confirm which job.
 - **`current`** → use the active tab as-is; match its URL against saved folders for context.
 
-If there is no `evaluation.md`, run `/paperwork:evaluate` first. Filling a form for an unscored job means the user may be applying to something a 30-second check would have ruled out.
+If there is no `evaluation.md`, run `/wingman:evaluate` first. Filling a form for an unscored job means the user may be applying to something a 30-second check would have ruled out.
 
 ## Step 2: Application data
 
@@ -70,7 +70,7 @@ Browser setup per `shared/references/web-extraction.md`. Detect the ATS from the
 
 - **CV** — always. Exists in the folder? Use it. Otherwise run the `tailor-cv` workflow inline and show it before continuing.
 - **Anschreiben / cover letter** — only if the form has a field for it. Then the `anschreiben` workflow inline.
-- **Zeugnisse** — if the form accepts attachments, use the audited set. Unaudited Zeugnis → say so and offer `/paperwork:zeugnis` before it goes out.
+- **Zeugnisse** — if the form accepts attachments, use the audited set. Unaudited Zeugnis → say so and offer `/wingman:zeugnis` before it goes out.
 
 ## Step 5: Propose everything at once
 
@@ -118,7 +118,7 @@ Multi-page forms (Workday, SuccessFactors, Interamt): fill, click *Save and Cont
 
 Screenshot the completed form. Walk through what is filled and what is still missing. Then **stop and ask for explicit confirmation.**
 
-**Paperwork does not click Submit, Send, Absenden, or „Bewerbung abschicken".** Not with prior approval, not when the user says "just do it", not when the form looks obviously complete. Drafting is reversible; submitting is not. The user clicks.
+**Wingman does not click Submit, Send, Absenden, or „Bewerbung abschicken".** Not with prior approval, not when the user says "just do it", not when the form looks obviously complete. Drafting is reversible; submitting is not. The user clicks.
 
 ## Step 8: Log
 
@@ -136,7 +136,7 @@ Write `applied.md` in the job folder: date, ATS, language, status (`Submitted` /
 
 ```json
 { "permissions": { "allow": [
-  "Read(~/.paperwork/**)", "Write(~/.paperwork/**)", "Edit(~/.paperwork/**)",
+  "Read(~/.wingman/**)", "Write(~/.wingman/**)", "Edit(~/.wingman/**)",
   "mcp__claude-in-chrome__*"
 ] } }
 ```

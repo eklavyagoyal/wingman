@@ -6,13 +6,13 @@ argument-hint: "company name, or empty to scan against your current pipeline"
 
 # Network Scan
 
-> Contacts import: `/paperwork:setup` · Boards: `shared/references/de-job-boards.md`
+> Contacts import: `/wingman:setup` · Boards: `shared/references/de-job-boards.md`
 
 In Germany a referral matters at least as much as anywhere else — Germans call the who-you-know factor **Vitamin B**, and Mittelstand hiring in particular runs on it. A named internal referral routinely beats a cold application to the same posting.
 
 ## Step 0: Prerequisites
 
-`contacts.csv` required. Missing → "Run `/paperwork:setup` and export your LinkedIn connections first." CV and preferences also required for the company-fit side.
+`contacts.csv` required. Missing → "Run `/wingman:setup` and export your LinkedIn connections first." CV and preferences also required for the company-fit side.
 
 ## Step 1: Load
 
@@ -78,7 +78,7 @@ Record contacts found and outreach drafted against the job folder, and note it i
 
 ```json
 { "permissions": { "allow": [
-  "Read(~/.paperwork/**)", "Write(~/.paperwork/**)", "Edit(~/.paperwork/**)",
+  "Read(~/.wingman/**)", "Write(~/.wingman/**)", "Edit(~/.wingman/**)",
   "mcp__claude-in-chrome__*"
 ] } }
 ```

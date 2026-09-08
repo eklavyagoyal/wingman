@@ -125,4 +125,4 @@ German employers frequently want **one PDF containing everything**, in a fixed o
 - **Email applications**: subject line = the Betreff (`Bewerbung als Software Engineer (m/w/d), Kennziffer 4711`). Body is 3–4 polite sentences pointing at the attachment; the real letter is the attached Anschreiben, not the email body.
 - **Zeugnisse the candidate does not have**: never invent one. Write `Zeugnisse werden auf Wunsch nachgereicht` in the Anlagen line.
 
-Before assembling, run `/paperwork:zeugnis` over any Arbeitszeugnis the candidate plans to attach. A German reference letter can be politely worded and still say something damaging in code — see `shared/references/zeugnis-code.md`. Attaching one unread is a self-inflicted wound.
+Before assembling, run `/wingman:zeugnis` over any Arbeitszeugnis the candidate plans to attach. A German reference letter can be politely worded and still say something damaging in code — see `shared/references/zeugnis-code.md`. Attaching one unread is a self-inflicted wound.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Structural check for the Paperwork plugin.
+"""Structural check for the Wingman plugin.
 
 A dead cross-reference is a silent runtime failure: the skill loads, tells
 Claude to read a file that isn't there, and the guidance is quietly skipped.
@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent
 SKILLS = sorted(p for p in (ROOT / "skills").iterdir() if p.is_dir())
-SKIP_DIRS = {".git", ".paperwork", "node_modules"}
+SKIP_DIRS = {".git", ".wingman", "node_modules"}
 MD = [p for p in ROOT.rglob("*.md") if not SKIP_DIRS & set(p.parts)]
 problems = []
 versions = {}
@@ -63,12 +63,12 @@ for p in MD:
         if not (ROOT / ref).exists():
             fail(f"{p.relative_to(ROOT)}: dead reference -> {ref}")
 
-# 3. every /paperwork:<skill> mentioned actually exists
+# 3. every /wingman:<skill> mentioned actually exists
 known = {s.name for s in SKILLS}
 for p in MD:
-    for cmd in set(re.findall(r"/paperwork:([a-z-]+)", p.read_text())):
+    for cmd in set(re.findall(r"/wingman:([a-z-]+)", p.read_text())):
         if cmd not in known:
-            fail(f"{p.relative_to(ROOT)}: /paperwork:{cmd} is not a skill ({', '.join(sorted(known))})")
+            fail(f"{p.relative_to(ROOT)}: /wingman:{cmd} is not a skill ({', '.join(sorted(known))})")
 
 # 4. manifests parse, and names agree
 for mf in [".claude-plugin/plugin.json", ".claude-plugin/marketplace.json"]:
@@ -78,8 +78,8 @@ for mf in [".claude-plugin/plugin.json", ".claude-plugin/marketplace.json"]:
         fail(f"{mf}: invalid JSON - {e}")
         continue
     got = data.get("name") or data.get("plugins", [{}])[0].get("name")
-    if got != "paperwork":
-        fail(f"{mf}: name is {got!r}, expected 'paperwork'")
+    if got != "wingman":
+        fail(f"{mf}: name is {got!r}, expected 'wingman'")
     for v in [data.get("version"), *(p.get("version") for p in data.get("plugins", []))]:
         if v is not None:
             versions.setdefault(v, []).append(mf)
@@ -144,8 +144,8 @@ for rel, needle, why in INVARIANTS:
 
 # 6. user data must never be committable
 gitignore = (ROOT / ".gitignore").read_text()
-if ".paperwork/" not in gitignore:
-    fail(".gitignore: does not exclude .paperwork/ - user data could be committed")
+if ".wingman/" not in gitignore:
+    fail(".gitignore: does not exclude .wingman/ - user data could be committed")
 
 print(f"checked {len(SKILLS)} skills, {len(MD)} markdown files")
 if problems:

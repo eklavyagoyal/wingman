@@ -113,6 +113,6 @@ I am not a lawyer. For a contested correction, a Fachanwalt für
 Arbeitsrecht or your union handles this routinely and cheaply.
 ```
 
-**Never rewrite a Zeugnis.** It is a document authored and signed by a third party. Paperwork audits it, extracts evidence from it, and advises the candidate on their options. Producing an altered version of an employer's signed reference would be forgery — decline that, always, and say why.
+**Never rewrite a Zeugnis.** It is a document authored and signed by a third party. Wingman audits it, extracts evidence from it, and advises the candidate on their options. Producing an altered version of an employer's signed reference would be forgery — decline that, always, and say why.
 
 **Never overstate the legal position.** The right to a benevolent reference is real; a *specific grade* is not owed, and disputes over wording turn on facts. Advise, cite §109 GewO, and point to a lawyer or union for anything contested.

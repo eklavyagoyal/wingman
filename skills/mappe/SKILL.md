@@ -20,7 +20,7 @@ In `DATA_DIR/zeugnisse/`: the attachment set.
 
 **Do not assemble an unaudited Arbeitszeugnis into a Mappe.** A politely-worded reference can carry a grade of 4 or a conduct red flag in code, and attaching one unread is a self-inflicted wound.
 
-Check `zeugnisse/audit.md`. For anything unaudited, run `/paperwork:zeugnis` now.
+Check `zeugnisse/audit.md`. For anything unaudited, run `/wingman:zeugnis` now.
 
 If an audit found a problem, ask with `AskUserQuestion` before including it:
 - **Request a correction** from the former employer (§109 GewO)
@@ -117,13 +117,13 @@ For an email application, also draft the covering email: subject line = the Betr
 
 1. **Mappe** — path, page count, size, contents listing
 2. **Checks** — each verification and its result
-3. **What's Next** — `/paperwork:apply` for a portal, or the drafted email for a direct application
+3. **What's Next** — `/wingman:apply` for a portal, or the drafted email for a direct application
 
 ## Permissions
 
 ```json
 { "permissions": { "allow": [
-  "Read(~/.paperwork/**)", "Write(~/.paperwork/**)", "Edit(~/.paperwork/**)",
+  "Read(~/.wingman/**)", "Write(~/.wingman/**)", "Edit(~/.wingman/**)",
   "Bash(node tools/mappe.mjs *)", "Bash(pdfunite *)", "Bash(qpdf *)"
 ] } }
 ```

@@ -76,7 +76,7 @@ Update the tracker status to `Gespräch`.
 
 ```json
 { "permissions": { "allow": [
-  "Read(~/.paperwork/**)", "Write(~/.paperwork/**)", "Edit(~/.paperwork/**)",
+  "Read(~/.wingman/**)", "Write(~/.wingman/**)", "Edit(~/.wingman/**)",
   "mcp__claude-in-chrome__*"
 ] } }
 ```

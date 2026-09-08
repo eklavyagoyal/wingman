@@ -1,7 +1,7 @@
-# Paperwork
+# Wingman
 
 German job applications, done properly. This file lets any agent CLI that reads
-`AGENTS.md` use Paperwork without the Claude Code plugin system.
+`AGENTS.md` use Wingman without the Claude Code plugin system.
 
 ## What this is
 

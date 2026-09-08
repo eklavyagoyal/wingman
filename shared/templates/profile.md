@@ -85,7 +85,7 @@ Every number in one place, so no document has to go hunting.
 
 ## Story Bank
 
-STAR+Reflection stories, accumulated by `/paperwork:interview-prep` and reused across applications instead of rewritten each time.
+STAR+Reflection stories, accumulated by `/wingman:interview-prep` and reused across applications instead of rewritten each time.
 
 | Theme | Story | Role |
 |-------|-------|------|
@@ -95,7 +95,7 @@ STAR+Reflection stories, accumulated by `/paperwork:interview-prep` and reused a
 
 ## German Application Facts
 
-Set during `/paperwork:setup`. Every skill reads these; none may guess a value that is missing here.
+Set during `/wingman:setup`. Every skill reads these; none may guess a value that is missing here.
 
 ### Sprachen
 
@@ -136,7 +136,7 @@ See `work-authorization.md`. For a non-EU degree, check anabin during setup, not
 
 | Dokument | Arbeitgeber / Institution | Datei | Audit |
 |----------|---------------------------|-------|-------|
-| Arbeitszeugnis | [Firma] | `zeugnisse/[datei]` | [grade from `/paperwork:zeugnis`, or "not audited"] |
+| Arbeitszeugnis | [Firma] | `zeugnisse/[datei]` | [grade from `/wingman:zeugnis`, or "not audited"] |
 | Abschlusszeugnis | [Hochschule] | `zeugnisse/[datei]` | n/a |
 
 Audit every Arbeitszeugnis before it goes into a Bewerbungsmappe.

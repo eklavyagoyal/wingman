@@ -53,7 +53,7 @@ With a job URL, decide what the ad's wording actually means for this candidate:
 | Öffentlicher Dienst | Often extra citizenship or clearance constraints — check | Usually blocked |
 | Sicherheitsüberprüfung | Typically needs long-term residency — flag early | Blocked |
 
-State the reasoning, not just the verdict, so the user can sanity-check it against their own paperwork.
+State the reasoning, not just the verdict, so the user can sanity-check it against their own wingman.
 
 ## Step 5: Form answers
 
@@ -77,7 +77,7 @@ Give the exact wording for the questions German forms ask, per the reference tab
 
 ```json
 { "permissions": { "allow": [
-  "Read(~/.paperwork/**)", "Write(~/.paperwork/**)", "Edit(~/.paperwork/**)",
+  "Read(~/.wingman/**)", "Write(~/.wingman/**)", "Edit(~/.wingman/**)",
   "mcp__claude-in-chrome__*"
 ] } }
 ```

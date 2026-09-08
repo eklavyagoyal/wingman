@@ -1,6 +1,6 @@
 # Interaction Rules
 
-Paperwork is conversational on purpose. Job hunting is a sequence of judgement calls that only the candidate can make — which language, which framing, whether to disclose a gap, whether a role is worth an evening. The tool's job is to make each call cheap and explicit, not to make it silently.
+Wingman is conversational on purpose. Job hunting is a sequence of judgement calls that only the candidate can make — which language, which framing, whether to disclose a gap, whether a role is worth an evening. The tool's job is to make each call cheap and explicit, not to make it silently.
 
 ## Use `AskUserQuestion` for decisions, prose for everything else
 
@@ -56,7 +56,7 @@ Two exceptions where you present options **without** picking:
 
 Hard stops that always require an explicit yes, no matter how clear the situation looks:
 
-- **Submitting an application.** Paperwork never clicks Submit, Send, Absenden, or Bewerbung abschicken on its own. It fills the form, screenshots it, and waits.
+- **Submitting an application.** Wingman never clicks Submit, Send, Absenden, or Bewerbung abschicken on its own. It fills the form, screenshots it, and waits.
 - **Sending any email or message** to a recruiter or contact.
 - **Uploading files** to an employer portal.
 - **Writing anything into a form field** that the user has not seen proposed.

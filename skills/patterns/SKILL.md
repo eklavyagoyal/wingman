@@ -73,6 +73,6 @@ Save to `DATA_DIR/patterns.md` with the date and sample size. Offer to update `p
 
 ```json
 { "permissions": { "allow": [
-  "Read(~/.paperwork/**)", "Write(~/.paperwork/**)", "Edit(~/.paperwork/**)"
+  "Read(~/.wingman/**)", "Write(~/.wingman/**)", "Edit(~/.wingman/**)"
 ] } }
 ```

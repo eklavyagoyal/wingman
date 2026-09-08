@@ -23,11 +23,11 @@ Produces a **tabellarischer Lebenslauf** or an **English CV**, depending on `lan
 
 ## Step 0: Prerequisites
 
-Per `shared/references/prerequisites.md`: CV and **profile both required**. Without a profile there is nothing to write from but the CV text, and the result is thin and full of guesses that the user then corrects for the next twenty applications. Say that and run `/paperwork:setup interview` instead.
+Per `shared/references/prerequisites.md`: CV and **profile both required**. Without a profile there is nothing to write from but the CV text, and the result is thin and full of guesses that the user then corrects for the next twenty applications. Say that and run `/wingman:setup interview` instead.
 
 ## Step 1: Job and language
 
-Get the posting (`$ARGUMENTS` URL, `last`, or ask). If no `evaluation.md` exists, run `/paperwork:evaluate` first — tailoring against an unscored posting means tailoring toward requirements nobody checked.
+Get the posting (`$ARGUMENTS` URL, `last`, or ask). If no `evaluation.md` exists, run `/wingman:evaluate` first — tailoring against an unscored posting means tailoring toward requirements nobody checked.
 
 Read `language.md`. If it does not exist, run the language decision now. **Never guess the language**, and never default to English because it is easier.
 
@@ -119,13 +119,13 @@ Offer adjustments with `AskUserQuestion` — emphasis, tone, length, specific bu
 
 1. **Document** — the full CV or Lebenslauf
 2. **Tailoring Notes** — changes, and the uncovered gaps
-3. **What's Next** — `/paperwork:anschreiben` for the letter
+3. **What's Next** — `/wingman:anschreiben` for the letter
 
 ## Permissions
 
 ```json
 { "permissions": { "allow": [
-  "Read(~/.paperwork/**)", "Write(~/.paperwork/**)", "Edit(~/.paperwork/**)",
+  "Read(~/.wingman/**)", "Write(~/.wingman/**)", "Edit(~/.wingman/**)",
   "mcp__claude-in-chrome__*"
 ] } }
 ```

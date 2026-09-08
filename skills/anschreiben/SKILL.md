@@ -18,7 +18,7 @@ CV and profile required per `shared/references/prerequisites.md`.
 
 Get the job (`$ARGUMENTS` URL, `last`, or ask). Read from the job folder: `posting.md`, `evaluation.md`, `language.md`, and the tailored CV if it exists.
 
-**A tailored CV materially improves the letter** — it already contains the match analysis. If none exists, offer to run `/paperwork:tailor-cv` first.
+**A tailored CV materially improves the letter** — it already contains the match analysis. If none exists, offer to run `/wingman:tailor-cv` first.
 
 Read `language.md`. It sets the language **and the register** (Sie / du). If missing, run the language decision.
 
@@ -83,13 +83,13 @@ Show the letter, note which achievements were used and why, and give the file pa
 
 1. **Letter** — full text
 2. **Writing Notes** — achievements used and why; anything deliberately left out
-3. **What's Next** — `/paperwork:mappe` to assemble, or `/paperwork:apply` to submit
+3. **What's Next** — `/wingman:mappe` to assemble, or `/wingman:apply` to submit
 
 ## Permissions
 
 ```json
 { "permissions": { "allow": [
-  "Read(~/.paperwork/**)", "Write(~/.paperwork/**)", "Edit(~/.paperwork/**)",
+  "Read(~/.wingman/**)", "Write(~/.wingman/**)", "Edit(~/.wingman/**)",
   "mcp__claude-in-chrome__*"
 ] } }
 ```

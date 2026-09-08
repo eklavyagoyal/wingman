@@ -12,7 +12,7 @@ Turns one posting into a decision: apply, skip, or a question for the user. Repl
 
 ## Step 0: Prerequisites
 
-Per `shared/references/prerequisites.md`: CV **and profile both required**. Scoring a role against an unknown candidate produces a number that means nothing — if there is no profile, say so and run `/paperwork:setup interview` instead.
+Per `shared/references/prerequisites.md`: CV **and profile both required**. Scoring a role against an unknown candidate produces a number that means nothing — if there is no profile, say so and run `/wingman:setup interview` instead.
 
 ## Step 1: Get the posting
 
@@ -55,7 +55,7 @@ Then gate on the score per `shared/references/interaction.md`:
 
 | Score | Action |
 |---|---|
-| **≥ 4.0** | Recommend applying. Offer `/paperwork:apply`. |
+| **≥ 4.0** | Recommend applying. Offer `/wingman:apply`. |
 | **3.0–4.0** | **Ask.** Show the gaps and let the user decide — apply anyway, skip, or see the full report. |
 | **< 3.0** | Recommend skipping, and say which blocker. Do not talk them into it. |
 
@@ -75,7 +75,7 @@ Append a row to `tracker.md` per `shared/references/tracker.md`.
 
 ```json
 { "permissions": { "allow": [
-  "Read(~/.paperwork/**)", "Write(~/.paperwork/**)", "Edit(~/.paperwork/**)",
+  "Read(~/.wingman/**)", "Write(~/.wingman/**)", "Edit(~/.wingman/**)",
   "mcp__claude-in-chrome__*"
 ] } }
 ```

@@ -49,7 +49,7 @@ Then the filtered table. Default to open items — hide `Absage` and `Verworfen`
 
 ## Step 3: Flag the stale
 
-Using the German follow-up timing table (startups ~10 days, Mittelstand ~3 weeks, Konzern ~4 weeks, öffentlicher Dienst ~6 weeks), list anything overdue and offer `/paperwork:followup`.
+Using the German follow-up timing table (startups ~10 days, Mittelstand ~3 weeks, Konzern ~4 weeks, öffentlicher Dienst ~6 weeks), list anything overdue and offer `/wingman:followup`.
 
 Remember: an **Eingangsbestätigung** is not a response, and a **Zwischenbescheid** means the process is still running — neither is a rejection.
 
@@ -70,6 +70,6 @@ Point at the specific command for each item needing attention. Never do the work
 
 ```json
 { "permissions": { "allow": [
-  "Read(~/.paperwork/**)", "Write(~/.paperwork/**)", "Edit(~/.paperwork/**)"
+  "Read(~/.wingman/**)", "Write(~/.wingman/**)", "Edit(~/.wingman/**)"
 ] } }
 ```

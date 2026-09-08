@@ -65,7 +65,7 @@ Do **not** run the full A–H evaluation on every hit — that is expensive and 
 4. **Flag** the language requirement of each ad, and whether it clears the candidate's level
 5. **Flag** work-authorization blockers per `work-authorization.md` — remembering that a permit holder is *not* blocked by a "no sponsorship" line
 
-Rank what survives. Then run the full `/paperwork:evaluate` only on the top handful, or on whatever the user picks.
+Rank what survives. Then run the full `/wingman:evaluate` only on the top handful, or on whatever the user picks.
 
 ## Step 5: Log everything
 
@@ -111,9 +111,9 @@ Then note which boards were searched, which failed, and how many were filtered w
 ## Step 8: Next steps
 
 ```
-/paperwork:evaluate <url>     full A–H report + 1–5 score
-/paperwork:tailor-cv <url>    Lebenslauf or CV
-/paperwork:apply <url>        evaluate, write, and fill the form
+/wingman:evaluate <url>     full A–H report + 1–5 score
+/wingman:tailor-cv <url>    Lebenslauf or CV
+/wingman:apply <url>        evaluate, write, and fill the form
 ```
 
 Do **not** tailor CVs, write letters, or fill forms in this skill. Those are separate skills with their own gates.
@@ -134,7 +134,7 @@ Update `preferences.md` from any feedback: "no Zeitarbeit" → dealbreaker; "not
 
 ```json
 { "permissions": { "allow": [
-  "Read(~/.paperwork/**)", "Write(~/.paperwork/**)", "Edit(~/.paperwork/**)",
+  "Read(~/.wingman/**)", "Write(~/.wingman/**)", "Edit(~/.wingman/**)",
   "mcp__claude-in-chrome__*"
 ] } }
 ```

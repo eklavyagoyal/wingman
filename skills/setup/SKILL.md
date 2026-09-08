@@ -58,7 +58,7 @@ Ask for German and English levels in CEFR. If the user is unsure of their German
 | C1 | work in German comfortably, argue a position, handle a phone interview |
 | C2 | near-native |
 
-Then say plainly why it matters: **this number decides whether Paperwork writes your applications in German**, and an inflated answer produces a letter you cannot back up in a phone screen. Store the honest level.
+Then say plainly why it matters: **this number decides whether Wingman writes your applications in German**, and an inflated answer produces a letter you cannot back up in a phone screen. Store the honest level.
 
 ### 3b — Arbeitserlaubnis
 
@@ -83,7 +83,7 @@ If the user does not know their market rate, offer to research it for their titl
 
 ### 3e — Zeugnisse
 
-Ask what they have. Copy files into `DATA_DIR/zeugnisse/`. Explain that German employers expect Arbeitszeugnisse attached, and that **a politely-worded Zeugnis can say something damaging in code** — offer to audit each one now with `/paperwork:zeugnis`. Most candidates have never had this done and it changes what they attach.
+Ask what they have. Copy files into `DATA_DIR/zeugnisse/`. Explain that German employers expect Arbeitszeugnisse attached, and that **a politely-worded Zeugnis can say something damaging in code** — offer to audit each one now with `/wingman:zeugnis`. Most candidates have never had this done and it changes what they attach.
 
 ### 3f — Lücken
 
@@ -91,7 +91,7 @@ For every gap found in Step 1, get a truthful explanation and record it. Same wo
 
 ## Step 4: Contacts (optional)
 
-Offer LinkedIn and Xing exports for `/paperwork:network-scan`.
+Offer LinkedIn and Xing exports for `/wingman:network-scan`.
 
 > **LinkedIn**: linkedin.com/mypreferences/d/download-my-data → Connections → they email a ZIP → `Connections.csv`
 > **Xing**: Xing has restricted bulk export; if unavailable, skip it — LinkedIn alone is enough for most searches.
@@ -128,10 +128,10 @@ Profile:         [n] roles
 Contacts:        [n] imported / skipped
 
 Next:
-  /paperwork:job-search              find German jobs
-  /paperwork:evaluate <url>          score one posting
-  /paperwork:zeugnis                 decode your Arbeitszeugnisse
-  /paperwork:visa                    check Blue Card / recognition
+  /wingman:job-search              find German jobs
+  /wingman:evaluate <url>          score one posting
+  /wingman:zeugnis                 decode your Arbeitszeugnisse
+  /wingman:visa                    check Blue Card / recognition
 ```
 
 ---
@@ -145,6 +145,6 @@ Next:
 
 ```json
 { "permissions": { "allow": [
-  "Read(~/.paperwork/**)", "Write(~/.paperwork/**)", "Edit(~/.paperwork/**)"
+  "Read(~/.wingman/**)", "Write(~/.wingman/**)", "Edit(~/.wingman/**)"
 ] } }
 ```

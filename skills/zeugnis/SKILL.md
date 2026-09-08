@@ -77,7 +77,7 @@ This is often the single richest untapped source of CV material the candidate al
 
 Write `DATA_DIR/zeugnisse/audit.md` with one entry per document: employer, dates, grades, quoted evidence, decision taken. Update the Zeugnisse table in `profile.md` with each grade.
 
-`/paperwork:mappe` reads this and refuses to assemble an unaudited Zeugnis.
+`/wingman:mappe` reads this and refuses to assemble an unaudited Zeugnis.
 
 ---
 
@@ -92,6 +92,6 @@ Write `DATA_DIR/zeugnisse/audit.md` with one entry per document: employer, dates
 
 ```json
 { "permissions": { "allow": [
-  "Read(~/.paperwork/**)", "Write(~/.paperwork/**)", "Edit(~/.paperwork/**)"
+  "Read(~/.wingman/**)", "Write(~/.wingman/**)", "Edit(~/.wingman/**)"
 ] } }
 ```

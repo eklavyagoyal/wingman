@@ -1,6 +1,6 @@
 # User data. Never committed: CVs, Zeugnisse, salary expectations, permit
 # details and the application pipeline all live here.
-.paperwork/
+.wingman/
 
 # Generated application documents, wherever they land
 *.pdf

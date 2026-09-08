@@ -1,4 +1,4 @@
-<h1 align="center">Paperwork</h1>
+<h1 align="center">Wingman</h1>
 
 <p align="center"><strong>Get hired in Germany.</strong></p>
 
@@ -42,7 +42,7 @@ And under all of it, the decision nobody automates properly: **do you apply in G
 
 Applying in the wrong language is the most common way a qualified candidate gets filtered out in Germany. Applying in German at a level you can't sustain in the phone screen is the second.
 
-Paperwork treats this as a real decision, made once per job, recorded, and never silently reversed:
+Wingman treats this as a real decision, made once per job, recorded, and never silently reversed:
 
 ```
 Language for Senior Backend Engineer (m/w/d) at Beispiel GmbH
@@ -73,15 +73,15 @@ It will not hand you a flawless C2 Anschreiben when your profile says B1 without
 ## Quick start
 
 ```bash
-git clone https://github.com/eklavyagoyal/paperwork.git
-claude plugin marketplace add ./paperwork
-claude plugin install paperwork@paperwork
+git clone https://github.com/eklavyagoyal/wingman.git
+claude plugin marketplace add ./wingman
+claude plugin install wingman@wingman
 ```
 
 Then in Claude Code:
 
 ```
-/paperwork:setup
+/wingman:setup
 ```
 
 Setup asks for your CV, your targets, and the German facts nothing else asks for: your honest CEFR level, your Aufenthaltstitel, your Kündigungsfrist, your Gehaltsvorstellung, whether you want a photo on your Lebenslauf, and which Zeugnisse you actually hold. It asks once and remembers — re-asking is how a tool like this becomes annoying enough to abandon.
@@ -89,9 +89,9 @@ Setup asks for your CV, your targets, and the German facts nothing else asks for
 Then:
 
 ```
-/paperwork:job-search
-/paperwork:evaluate <url>
-/paperwork:apply <url>
+/wingman:job-search
+/wingman:evaluate <url>
+/wingman:apply <url>
 ```
 
 14 skills, ~550 tokens always-on. `AGENTS.md` routes other agent CLIs to the same instruction files, though Claude Code is the only one this has been exercised in.
@@ -139,13 +139,13 @@ Schluss    Cool
 Verdict: this document is working against you.
 ```
 
-`stets` plus `vollste` is a 1. Neither is a 3. "Hat sich bemüht" reads kindly and means *failed*. You have a legal right to a truthful and benevolent reference — Paperwork tells you what yours says, drafts the correction request, and **refuses to alter the document itself**, because that's a third party's signed instrument.
+`stets` plus `vollste` is a 1. Neither is a 3. "Hat sich bemüht" reads kindly and means *failed*. You have a legal right to a truthful and benevolent reference — Wingman tells you what yours says, drafts the correction request, and **refuses to alter the document itself**, because that's a third party's signed instrument.
 
 ### "No visa sponsorship" probably doesn't mean you
 
 Generic tools reduce work authorization to one boolean and get it wrong in both directions. If you already hold a Blue Card in Germany, an ad saying "no sponsorship" is aimed at candidates abroad — **it is not a blocker**, and discarding those roles costs you months. If you're outside the EU with an unrecognised degree, you'll pass that boolean and then fail at the Ausländerbehörde.
 
-Paperwork establishes your status once, checks your degree against **anabin**, knows that IT specialists can qualify without a degree since the 2023 reform, and **looks the Blue Card thresholds up** rather than quoting them from memory — they're re-set every January, and a stale number makes you discard a job you're eligible for.
+Wingman establishes your status once, checks your degree against **anabin**, knows that IT specialists can qualify without a degree since the 2023 reform, and **looks the Blue Card thresholds up** rather than quoting them from memory — they're re-set every January, and a stale number makes you discard a job you're eligible for.
 
 ### The metric that needs the language decision recorded
 
@@ -181,7 +181,7 @@ These are enforced by `check.py`, which fails if any of them is edited away.
 
 ## Your data stays yours
 
-Everything lives in `.paperwork/` on your machine, gitignored. No account, no telemetry, no upload — nothing leaves except what you already send to the model running Claude Code.
+Everything lives in `.wingman/` on your machine, gitignored. No account, no telemetry, no upload — nothing leaves except what you already send to the model running Claude Code.
 
 ## Status
 
