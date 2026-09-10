@@ -25,11 +25,16 @@ Ranked by how often you will actually meet them:
 
 `<slug>.jobs.personio.de` or `.com`, often linked from a company careers page.
 
-- **Discovery**: check for the public XML jobs feed before scraping. Many tenants expose one.
-- **Form**: expected to render natively at top level, so `read_page` and `form_input` should work directly.
-- **Multiple attachments are normal** — separate upload fields for Lebenslauf, Anschreiben, and Zeugnisse. This is the biggest structural difference from US systems, which usually take one resume and maybe a letter. Build the whole attachment set.
-- **A DSGVO consent checkbox is required to submit.** It is a genuine consent action. Surface it; never tick it.
-- Conventional German fields: `Gehaltsvorstellung`, `Frühestmöglicher Eintrittstermin`, `Kündigungsfrist`, `Wie haben Sie von uns erfahren?`.
+**Verified live on one tenant (SMIGHT GmbH, 2026-09-10).** Field keys below are Personio's standard names and should hold across tenants; custom attributes and the exact field set vary per employer, so still scout.
+
+- **Discovery**: check the public XML jobs feed first — `https://<slug>.jobs.personio.de/xml`. It carries the full description, office, seniority, `createdAt` (useful for spotting long-open postings) and is far more reliable than scraping. Verified working.
+- **Form location**: a separate page at `/job/<id>/apply?language=de`, reached from the posting via „Auf diese Stelle bewerben". **No iframe** — renders natively, so `read_page` and `form_input` work once the page is rendered. The SPA also builds its DOM in a hidden pane, so `javascript_tool` can enumerate fields when `read_page` returns an empty viewport.
+- **Standard field keys** (`name` attribute): `first_name`, `last_name`, `email`, `phone`, `available_from` (Verfügbar ab), `location` (Ort), `salary_expectations` (Gehaltsvorstellung). Tenant extras appear as `custom_attribute_<n>` — on SMIGHT that was LinkedIn.
+- **Required is marked in the label text**, e.g. `E-Mail* (erforderlich)`, while the DOM `required` attribute is `false` on every field. **Read the label, not the attribute**, or every field looks optional.
+- **Multiple attachments confirmed**: `documents.cv` („Upload Lebenslauf") and `documents.other` („Upload Andere"), both `multiple`, added via „Datei hinzufügen". There is no dedicated Anschreiben field — the letter and any Zeugnisse go into `documents.other`. Build the whole attachment set.
+- **DSGVO consent is tenant-dependent.** Some tenants show a checkbox; SMIGHT shows none and treats submitting as acceptance. Either way it is the candidate's consent action — never tick a box, and never click the submit button.
+- **Submit button label**: „**Bewerbung senden**". This is on the never-click list.
+- Not present on this tenant, present on others: `Wie haben Sie von uns erfahren?`, `Kündigungsfrist`. No EEO, no Schwerbehinderung.
 
 ## softgarden
 

@@ -16,7 +16,7 @@ CV and profile required per `shared/references/prerequisites.md`.
 
 ## Step 1: Job, language, materials
 
-Get the job (`$ARGUMENTS` URL, `last`, or ask). Read from the job folder: `posting.md`, `evaluation.md`, `language.md`, and the tailored CV if it exists.
+Get the job (a URL, `last`, or ask). Read from the job folder: `posting.md`, `evaluation.md`, `language.md`, and the tailored CV if it exists.
 
 **A tailored CV materially improves the letter** — it already contains the match analysis. If none exists, offer to run `/wingman:tailor-cv` first.
 

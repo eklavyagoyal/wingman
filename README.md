@@ -231,7 +231,7 @@ Drafting is reversible. Sending is not.
 
 |  |  |
 |---|---|
-| **Never clicks Submit** | Not Absenden, not „Bewerbung abschicken". Not with prior approval, not when you say *just do it*. It fills the form, screenshots it, and stops. |
+| **Never clicks Submit** | Not Absenden, not „Bewerbung senden", not „Bewerbung abschicken". Not with prior approval, not when you say *just do it*. It fills the form, screenshots it, and stops. |
 | **Never ticks a DSGVO box** | That's your consent to give. Approving a fill plan isn't approving a data-processing agreement. |
 | **Never sends a message** | No email, no LinkedIn DM. Drafts only, addressed and ready. |
 | **Never inflates a fact** | Not your language level, salary, dates or scope. Every claim traces to your CV or profile, or it doesn't get written. |
@@ -250,7 +250,7 @@ Everything lives in `.wingman/` on your machine, gitignored. No account, no tele
 
 ## Status
 
-**v0.1.2** — mostly instruction files: 14 skills over a German knowledge layer, plus a zero-dependency PDF renderer.
+**v0.1.3** — mostly instruction files: 14 skills over a German knowledge layer, plus a zero-dependency PDF renderer.
 
 ```bash
 python3 check.py                  # structure, dead links, DATA_DIR drift, 13 safety invariants
@@ -259,7 +259,7 @@ node tools/mappe.mjs --selftest   # 22 assertions
 
 **Well-grounded** — document conventions, Zeugnis decoding, the language decision, comp and contract terms, board coverage, PDF rendering. The images above are real output, inspected visually.
 
-**Marked unverified in the source** — the application-system notes in `shared/references/ats.md` are *structural*: URL shapes, whether a form sits in an iframe, which fields are conventional. Deliberately not element-level, and every skill is told to scout a live form before filling and never assume a selector.
+**Verified against a live form** — Personio, on one tenant: no iframe, form at `/job/<id>/apply`, standard field keys, required-ness in the label text, multi-file uploads, submit label „Bewerbung senden". Recorded in `shared/references/ats.md`. **Still structural only** — softgarden, SuccessFactors, Interamt: URL shapes and conventional fields, not element-level; skills scout every live form before filling.
 
 **Not built** — no dashboard, no batch mode. `mappe` needs Chrome, plus `pdfunite` or `qpdf` to append Zeugnis scans.
 

@@ -27,7 +27,7 @@ Per `shared/references/prerequisites.md`: CV and **profile both required**. With
 
 ## Step 1: Job and language
 
-Get the posting (`$ARGUMENTS` URL, `last`, or ask). If no `evaluation.md` exists, run `/wingman:evaluate` first — tailoring against an unscored posting means tailoring toward requirements nobody checked.
+Get the posting (a URL, `last`, or ask). If no `evaluation.md` exists, run `/wingman:evaluate` first — tailoring against an unscored posting means tailoring toward requirements nobody checked.
 
 Read `language.md`. If it does not exist, run the language decision now. **Never guess the language**, and never default to English because it is easier.
 

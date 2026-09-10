@@ -35,6 +35,8 @@ US-built job tools scan LinkedIn, Indeed, Greenhouse, Lever and Ashby. In German
 
 A 2.6 on kununu with reviews complaining about unpaid overtime is a stronger signal than anything in the job ad. Surface it in the evaluation.
 
+**Fetching it**: kununu blocks plain HTTP fetchers (`WebFetch` fails outright), and web search rarely surfaces the score. Use the browser tools — navigate to `kununu.com/de/<company-slug>` and extract with `javascript_tool`. If the browser is unavailable, say "kununu not checked" rather than guessing.
+
 ---
 
 ## Filters that only matter in Germany

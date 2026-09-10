@@ -18,7 +18,7 @@ Resolve the data directory. Check per `shared/references/prerequisites.md`: CV a
 
 Read `resume/*`, `preferences.md`, `profile.md`, `job-history.md` (to skip duplicates), `tracker.md`, and `contacts.csv` if present.
 
-Search terms from `$ARGUMENTS`, else target roles from preferences. For German-language searching, **search both languages** — „Softwareentwickler" and "Software Engineer" surface different employers, and the German term reaches the Mittelstand.
+Search terms from the argument, else target roles from preferences. For German-language searching, **search both languages** — „Softwareentwickler" and "Software Engineer" surface different employers, and the German term reaches the Mittelstand.
 
 ## Step 2: Pick boards
 

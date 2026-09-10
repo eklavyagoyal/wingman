@@ -16,8 +16,8 @@ html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11pt;
-  line-height: 1.35;
+  font-size: 10.5pt;
+  line-height: 1.32;
   color: #000;
   margin: 0;
   hyphens: auto;
@@ -27,10 +27,10 @@ body {
 section.doc { break-before: page; }
 section.doc:first-of-type { break-before: auto; }
 
-h1 { font-size: 15pt; margin: 0 0 10mm; font-weight: 700; letter-spacing: .01em; }
+h1 { font-size: 15pt; margin: 0 0 7mm; font-weight: 700; letter-spacing: .01em; }
 h2 {
   font-size: 11.5pt;
-  margin: 7mm 0 2.5mm;
+  margin: 5mm 0 2mm;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .07em;
@@ -40,7 +40,7 @@ h2 {
 }
 h3 { font-size: 11pt; margin: 4mm 0 1.5mm; font-weight: 700; break-after: avoid; }
 
-p { margin: 0 0 3.6mm; orphans: 2; widows: 2; }
+p { margin: 0 0 3.2mm; orphans: 2; widows: 2; }
 
 /* Address and sender blocks are line-per-line, so single newlines are
  * rendered as hard breaks by the converter. */
@@ -53,10 +53,10 @@ li { margin-bottom: 1.2mm; orphans: 2; widows: 2; }
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 0 0 4mm;
-  font-size: 10.5pt;
+  margin: 0 0 3mm;
+  font-size: 10pt;
 }
-td, th { vertical-align: top; padding: 1.1mm 3mm 1.1mm 0; text-align: left; }
+td, th { vertical-align: top; padding: 0.7mm 3mm 0.7mm 0; text-align: left; }
 th { font-weight: 700; }
 table tr > td:first-child,
 table tr > th:first-child { width: 34mm; white-space: nowrap; }

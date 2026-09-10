@@ -120,6 +120,8 @@ for p in ROOT.glob("skills/**/*.md"):
 INVARIANTS = [
     ("skills/apply/SKILL.md", "Absenden",
      "apply must name the German submit verbs it refuses to click"),
+    ("skills/apply/SKILL.md", "Bewerbung senden",
+     "apply must name Personio's actual submit label (verified live)"),
     ("skills/apply/SKILL.md", "DSGVO",
      "apply must refuse to tick DSGVO consent"),
     ("skills/apply/scripts/fill-page.md", "needs_user_consent",

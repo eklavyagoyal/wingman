@@ -80,7 +80,7 @@ Verify the renderer itself with `node "${CLAUDE_PLUGIN_ROOT}/tools/mappe.mjs" --
 
 ## Step 4: Name and check
 
-**File name**: `Bewerbung_[Nachname]_[Vorname]_[Position].pdf` — never `resume_final_v3.pdf`.
+**File name**: `Bewerbung_[Nachname]_[Vorname]_[Position].pdf` — never `resume_final_v3.pdf`. The renderer writes `bewerbungsmappe.pdf` as the folder's canonical file; **copy** it to the hand-off name for the upload rather than renaming, so the folder stays predictable.
 
 The renderer checks page counts, file size, and attachment merging, and prints
 each result. Pass its output through verbatim rather than summarising it away.

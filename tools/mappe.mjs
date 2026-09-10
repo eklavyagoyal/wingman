@@ -65,7 +65,7 @@ const inline = (s) =>
 // a Lebenslauf's trailing Ort/Datum line stays left-aligned above the
 // signature, so these transforms are scoped by the caller.
 const DATE_LINE = /^(?:[^,\n]{2,40},\s*)?(?:\d{1,2}\.\s*\p{L}+\s*\d{4}|\d{1,2}\.\d{1,2}\.\d{4})$/u;
-const SIGNOFF = /^(?:Mit freundlichen Gr(?:ü|ue)(?:ß|ss)en|Freundliche Gr(?:ü|ue)(?:ß|ss)e|Mit besten Gr(?:ü|ue)(?:ß|ss)en|Regards|Best regards|Kind regards|Sincerely)[,.]?$/;
+const SIGNOFF = /^(?:(?:Mit\s+)?(?:freundlichen|besten|herzlichen)\s+Gr(?:ü|ue)(?:ß|ss)en|(?:Viele|Beste|Herzliche|Liebe|Schöne|Freundliche)\s+Gr(?:ü|ue)(?:ß|ss)e|Hochachtungsvoll|(?:Best|Kind|Warm)\s+regards|Regards|Sincerely|Yours\s+(?:sincerely|faithfully))[,.]?$/;
 
 function mdToHtml(md, { letter = false } = {}) {
   const out = [];
@@ -297,9 +297,11 @@ function build(folder, lang, outName) {
       : `FAIL  ${letterName} is ${counts.Letter} pages - must be exactly 1. Cut it.`);
   }
   if (counts.CV != null) {
-    checks.push(counts.CV <= 2
-      ? `PASS  ${cvName} is ${counts.CV} page(s)`
-      : `FAIL  ${cvName} is ${counts.CV} pages - maximum is 2. Cut bullets from the oldest roles.`);
+    checks.push(counts.CV > 2
+      ? `FAIL  ${cvName} is ${counts.CV} pages - maximum is 2. Cut bullets from the oldest roles.`
+      : counts.CV === 2
+        ? `PASS  ${cvName} is 2 pages - check page 2 is not a short orphan; a two-role ${cvName} usually fits on one`
+        : `PASS  ${cvName} is 1 page`);
   }
   checks.push(bytes <= MAX_BYTES
     ? `PASS  ${(bytes / 1024 / 1024).toFixed(2)} MB, under the 5 MB portal cap`
@@ -361,6 +363,10 @@ function selftest() {
     "a Lebenslauf date line is NOT right-aligned");
   assert(mdToHtml("Mit freundlichen Grüßen", { letter: true }).includes('class="signoff"'),
     "Grussformel gets signature space");
+  for (const s of ["Viele Grüße", "Beste Grüße", "Herzliche Grüße", "Liebe Grüße", "Best regards"]) {
+    assert(mdToHtml(s, { letter: true }).includes('class="signoff"'),
+      `informal / English sign-off "${s}" gets signature space (du-register letters use these)`);
+  }
   assert(!mdToHtml("Meine Gehaltsvorstellung liegt bei 75.000 EUR", { letter: true }).includes('class="date"'),
     "ordinary paragraphs are untouched");
 

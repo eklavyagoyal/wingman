@@ -21,12 +21,14 @@ Work top to bottom in the order fields appear on the page.
 
 **After each field**, confirm the value took and no error state appeared. Two attempts maximum per field, then record it as failed and move on.
 
+**Required fields**: on Personio the DOM `required` attribute is false everywhere and the label carries `* (erforderlich)`. Decide required-ness from the label text.
+
 ## Hard stops
 
 These are not preferences.
 
-- **Never click a button that advances or submits.** Not Submit, Send, Absenden, „Bewerbung abschicken", Weiter, Save and Continue, or Next. That belongs to the calling skill, which has its own confirmation gate.
-- **Never tick a DSGVO or Datenschutz consent checkbox.** Report it under `needs_user_consent` and leave it alone. General approval of a fill plan is not consent to a data-processing agreement — that is the candidate's to give.
+- **Never click a button that advances or submits.** Not Submit, Send, Absenden, „Bewerbung senden", „Bewerbung abschicken", Weiter, Save and Continue, or Next. That belongs to the calling skill, which has its own confirmation gate.
+- **Never tick a DSGVO or Datenschutz consent checkbox.** Where a form has no checkbox and states that submitting implies acceptance, the submit click *is* the consent — which is one more reason it is never yours. Report it under `needs_user_consent` and leave it alone. General approval of a fill plan is not consent to a data-processing agreement — that is the candidate's to give.
 - **Never tick a terms or arbitration agreement** for the same reason.
 - **Never answer `Schwerbehinderung`** unless the approved mapping carries an explicit value. Leave it blank.
 - **Never invent a value.** If a required field has no approved answer, record it under `fields_failed` with the reason. Do not guess `Gehaltsvorstellung`, and never put "sofort" in an Eintrittstermin when a notice period exists.

@@ -56,7 +56,7 @@ If `application-data.md` exists, load it. Otherwise extract what you can from th
 
 Browser setup per `shared/references/web-extraction.md`. Detect the ATS from the URL per `shared/references/ats.md`.
 
-- **Personio** (`*.jobs.personio.de/.com`) — native single page expected. **Multiple upload fields** for Lebenslauf, Anschreiben and Zeugnisse; build the whole attachment set. A **DSGVO consent checkbox** is required to submit.
+- **Personio** (`*.jobs.personio.de/.com`) — native single page expected. **Multiple upload fields** for Lebenslauf, Anschreiben and Zeugnisse; build the whole attachment set. DSGVO consent is tenant-dependent: a checkbox on some, implicit-on-submit on others (SMIGHT) — either way the candidate's action.
 - **softgarden** (`*.softgarden.io`) — native. Quick-apply via LinkedIn/Xing also offered.
 - **Lever** (`jobs.lever.co`) — append `/apply`. Most automation-friendly.
 - **Greenhouse** — extract the iframe tokens, then navigate to the direct form URL (see the reference).
@@ -118,7 +118,7 @@ Multi-page forms (Workday, SuccessFactors, Interamt): fill, click *Save and Cont
 
 Screenshot the completed form. Walk through what is filled and what is still missing. Then **stop and ask for explicit confirmation.**
 
-**Wingman does not click Submit, Send, Absenden, or „Bewerbung abschicken".** Not with prior approval, not when the user says "just do it", not when the form looks obviously complete. Drafting is reversible; submitting is not. The user clicks.
+**Wingman does not click Submit, Send, Absenden, „Bewerbung senden", or „Bewerbung abschicken".** Not with prior approval, not when the user says "just do it", not when the form looks obviously complete. Drafting is reversible; submitting is not. The user clicks.
 
 ## Step 8: Log
 
