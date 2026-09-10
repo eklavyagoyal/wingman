@@ -22,6 +22,8 @@ Get the job (`$ARGUMENTS` URL, `last`, or ask). Read from the job folder: `posti
 
 Read `language.md`. It sets the language **and the register** (Sie / du). If missing, run the language decision.
 
+**If the decision is `Both`**, write both letters — `anschreiben-de.md` *and* `cover-letter-en.md` — German first, each written natively from the profile. The two letters may lead with different achievements if the register calls for it; what they may not do is be translations of each other.
+
 ## Step 2: Find the addressee
 
 Search the posting and the company site for a named contact. `Sehr geehrte Frau Berger,` beats `Sehr geehrte Damen und Herren,` — and it is a five-minute search that most applicants skip.

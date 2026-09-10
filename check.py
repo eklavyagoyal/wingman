@@ -103,6 +103,16 @@ for path, users in sorted(seen.items()):
 if len(versions) > 1:
     fail("manifest versions disagree: " + "; ".join(f"{v} in {', '.join(f)}" for v, f in versions.items()))
 
+# 4c. plugin files must be addressed via CLAUDE_PLUGIN_ROOT from inside skills
+#
+# Skills run from the user's working directory, but the plugin is installed as
+# a cache copy elsewhere. A bare `node tools/...` works in this repo and fails
+# for every real user.
+for p in ROOT.glob("skills/**/*.md"):
+    for line in p.read_text().splitlines():
+        if re.search(r"\bnode\s+tools/", line):
+            fail(f"{p.relative_to(ROOT)}: bare `node tools/...` - use CLAUDE_PLUGIN_ROOT -> {line.strip()[:60]}")
+
 # 5. safety invariants must survive edits
 #
 # These are the rules that stop the tool doing something irreversible on a

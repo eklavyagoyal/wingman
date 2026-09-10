@@ -11,7 +11,7 @@
       "name": "wingman",
       "source": "./",
       "description": "Get hired in Germany. German/English application-language decision, tabellarischer Lebenslauf, DIN 5008 Anschreiben, Arbeitszeugnis decoding, Blue Card eligibility, Personio/softgarden form filling.",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "license": "MIT",
       "category": "productivity",
       "keywords": [

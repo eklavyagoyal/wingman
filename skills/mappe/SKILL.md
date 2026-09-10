@@ -45,9 +45,11 @@ Ask whether to include a Deckblatt. Recommend one for Mittelstand and public sec
 Run the renderer:
 
 ```bash
-node tools/mappe.mjs DATA_DIR/jobs/[folder]           # language from language.md
-node tools/mappe.mjs DATA_DIR/jobs/[folder] --lang de # override
+node "${CLAUDE_PLUGIN_ROOT}/tools/mappe.mjs" DATA_DIR/jobs/[folder]            # language from language.md
+node "${CLAUDE_PLUGIN_ROOT}/tools/mappe.mjs" DATA_DIR/jobs/[folder] --lang de  # override
 ```
+
+The renderer ships inside the plugin, not in the user's project — `${CLAUDE_PLUGIN_ROOT}` is where Claude Code installed it (a versioned cache copy). Never run the renderer by a bare repo-relative path; from the user's working directory `tools/mappe.mjs` does not exist.
 
 It reads the **`Application language` line** of `language.md` to pick the German or English document set — not the whole file, because the Evidence block there legitimately names the ad's language, which is often German for an application deliberately made in English. If that decision was **Both**, it builds both and names them `bewerbungsmappe-de.pdf` and `bewerbungsmappe-en.pdf`. It renders the
 Anschreiben and Lebenslauf to A4 with DIN 5008 margins via headless Chrome,
@@ -74,7 +76,7 @@ anything without asking.
 says so and still produces the letter and CV. Pass that warning on — never
 present a Mappe as complete when the attachments are missing.
 
-Verify the renderer itself with `node tools/mappe.mjs --selftest`.
+Verify the renderer itself with `node "${CLAUDE_PLUGIN_ROOT}/tools/mappe.mjs" --selftest`.
 
 ## Step 4: Name and check
 
@@ -124,6 +126,6 @@ For an email application, also draft the covering email: subject line = the Betr
 ```json
 { "permissions": { "allow": [
   "Read(~/.wingman/**)", "Write(~/.wingman/**)", "Edit(~/.wingman/**)",
-  "Bash(node tools/mappe.mjs *)", "Bash(pdfunite *)", "Bash(qpdf *)"
+  "Bash(node *mappe.mjs *)", "Bash(pdfunite *)", "Bash(qpdf *)"
 ] } }
 ```

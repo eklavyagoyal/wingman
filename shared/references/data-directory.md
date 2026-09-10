@@ -44,6 +44,13 @@ DATA_DIR/
       applied.md             # what was submitted, when, and how
 ```
 
+## Two roots, not one
+
+- **`DATA_DIR`** — the user's data, `.wingman/`, resolved above. Everything the user owns lives here.
+- **`${CLAUDE_PLUGIN_ROOT}`** — where Claude Code installed this plugin: a versioned cache copy under `~/.claude/plugins/cache/`, *not* the user's working directory. Every repo-relative path in these skills — `shared/references/…`, `shared/templates/…`, `tools/…` — resolves against it, and any shell command that runs a plugin file must say so: `node "${CLAUDE_PLUGIN_ROOT}/tools/mappe.mjs"`.
+
+Confusing the two is the most likely way a skill works in development and fails for a user.
+
 ## Rules
 
 - **One folder per job.** Slug from the employer name plus the date the job was found.

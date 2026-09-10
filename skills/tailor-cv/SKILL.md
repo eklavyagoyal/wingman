@@ -31,6 +31,8 @@ Get the posting (`$ARGUMENTS` URL, `last`, or ask). If no `evaluation.md` exists
 
 Read `language.md`. If it does not exist, run the language decision now. **Never guess the language**, and never default to English because it is easier.
 
+**If the decision is `Both`**, produce both documents — `resume-de.md` *and* `resume-en.md`. Write the German one first, since it is the harder constraint, then write the English one **natively from the profile**. Never translate one into the other: a translated Lebenslauf reads translated, which defeats the point of offering both. `mappe` will then render two PDFs.
+
 ## Step 2: Match analysis
 
 Before writing:
