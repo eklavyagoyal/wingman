@@ -65,7 +65,7 @@ Content order — Betreff, Anrede, the lowercase first word, Anlagen — comes f
 the `anschreiben` skill and the template. The renderer only lays out what you
 wrote.
 
-**If it reports a FAIL**, fix the document and re-run. Do not hand over a Mappe
+**If it reports a FAIL**, fix the document and re-run. **If it reports a two-page Lebenslauf with the orphan note**, send it back through `/wingman:tailor-cv` — that skill has the cut order — rather than shipping a page with three rows on it. Do not hand over a Mappe
 with a two-page Anschreiben because the tool technically produced a file.
 
 **If it exits saying no Chrome was found**, say so plainly, and give the user

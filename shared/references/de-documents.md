@@ -70,7 +70,7 @@ The German CV is **tabular and reverse-chronological** — a two-column layout o
 | **Ehrenamt / Interessen** | Optional, two lines maximum. Genuine engagement only. |
 | **Ort, Datum + Unterschrift** | Traditional signed footer. Expected at conservative employers, optional at startups. |
 
-**Length: 1–2 pages, hard maximum 2.**
+**Length: 1–2 pages, hard maximum 2.** Under roughly ten years of experience, aim for one; a second page holding three rows reads as careless.
 
 ### Language levels — state them, and state them honestly
 

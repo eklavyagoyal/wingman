@@ -47,13 +47,15 @@ Before writing:
 Follow `shared/templates/lebenslauf.md` exactly.
 
 - **Persönliche Daten** — from profile. Photo, Geburtsdatum, Staatsangehörigkeit only per the stored preferences. **Never Familienstand, never religion.**
-- **Berufserfahrung** — reverse chronological, `MM/JJJJ` format. Bullets reordered so the two most relevant to *this* posting come first. 2–5 per role, fewer for older roles.
+- **Berufserfahrung** — reverse chronological, `MM/JJJJ` format. Bullets reordered so the two most relevant to *this* posting come first. 2–5 per role, fewer for older roles. **Company descriptor on one line** — „Muster AG, Stuttgart (Zahlungsabwicklung, ca. 250 Mitarbeitende)", not a sentence about the business.
 - **Ausbildung** — include the grade. Add the German equivalent of a foreign degree if anabin gives one.
-- **Kenntnisse** — Sprachen with CEFR **exactly as recorded in the profile**, then technical skills ordered by what the ad asks for.
+- **Kenntnisse** — Sprachen with CEFR **exactly as recorded in the profile**, then technical skills ordered by what the ad asks for. **Three or four rows, not one per technology group**: Sprachen · Technologien · Arbeitsweise/Zertifikate. Certificates live here, not in a section of their own, unless there are enough to justify one.
 - **Lücken** — labelled with the stored explanation, verbatim, so it never contradicts another document.
 - **Ort, Datum, Unterschrift** — include for conservative employers, omit for startups.
 
 **German writing rules:** natural Tech-Deutsch, never translated-sounding. Short sentences, active verbs, avoid Passiv. Keep established technical terms in English — Stack, Deployment, Pipeline, Embedding. No em dashes.
+
+**Length**: under roughly ten years of experience, **aim for one page**. Two is the hard maximum, and a two-page Lebenslauf must be two *full* pages — one page and a three-row sliver reads as careless. If it runs over, cut in this order: company descriptors to one line, Kenntnisse rows merged, a redundant bullet from the most recent role (anything the Anschreiben already carries), then bullets from the oldest role. Never a role itself.
 
 Save as `resume-de.md`.
 
@@ -112,6 +114,8 @@ Naming the uncovered gaps matters more than hiding them: it is what the intervie
 ## Step 7: Iterate
 
 Offer adjustments with `AskUserQuestion` — emphasis, tone, length, specific bullets.
+
+If `mappe` reported a two-page Lebenslauf with a short orphan page, that is a **required** iteration, not optional polish. Cut per the order above until it is one full page or two full pages.
 
 **Every factual correction goes into `profile.md` immediately.** That is what stops the same mistake recurring on the next twenty applications.
 

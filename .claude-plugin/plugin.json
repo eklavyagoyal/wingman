@@ -1,7 +1,7 @@
 {
   "name": "wingman",
   "description": "Get hired in Germany. Finds German jobs, decides whether to apply in German or English, and writes a Lebenslauf and DIN 5008 Anschreiben that read like a native wrote them.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "license": "MIT",
   "keywords": [
     "job-search",

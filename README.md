@@ -250,7 +250,7 @@ Everything lives in `.wingman/` on your machine, gitignored. No account, no tele
 
 ## Status
 
-**v0.1.3** — mostly instruction files: 14 skills over a German knowledge layer, plus a zero-dependency PDF renderer.
+**v0.1.4** — mostly instruction files: 14 skills over a German knowledge layer, plus a zero-dependency PDF renderer.
 
 ```bash
 python3 check.py                  # structure, dead links, DATA_DIR drift, 13 safety invariants

@@ -1,7 +1,7 @@
 # Lebenslauf Template (tabellarisch)
 
 Skeleton for a German CV. Rules in `shared/references/de-documents.md`.
-**1–2 pages, hard maximum 2. Reverse-chronological throughout.**
+**1–2 pages, hard maximum 2. Under ~10 years of experience, aim for one. Reverse-chronological throughout.**
 
 ---
 
