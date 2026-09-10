@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Privacy note
+    url: https://github.com/eklavyagoyal/wingman#your-data-stays-yours
+    about: Never paste a real Arbeitszeugnis, CV, or salary into an issue. Anonymise it first - swap names, employers and dates.

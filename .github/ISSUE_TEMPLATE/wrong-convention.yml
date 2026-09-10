@@ -1,0 +1,59 @@
+name: A German convention is wrong
+description: You hire in Germany, or have been hired there, and something in the knowledge layer is incorrect or outdated.
+title: "[convention] "
+labels: ["convention", "needs-source"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is the most useful issue you can file. The German layer was written carefully but has not been reviewed by a native hirer, and conventions drift. One corrected claim helps every user.
+  - type: input
+    id: location
+    attributes:
+      label: Where is the claim?
+      description: File and, if you can, the line or section. Most live under `shared/references/`.
+      placeholder: shared/references/zeugnis-code.md - the Leistung table, grade 2 row
+    validations:
+      required: true
+  - type: textarea
+    id: claim
+    attributes:
+      label: What does Wingman currently say?
+      description: Quote it.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What is actually correct?
+      description: Be specific. "It depends" is fine if you say what it depends on.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: How do you know?
+      description: A law (§109 GewO), a standard (DIN 5008), a court ruling, an official page, or direct experience - say which. Experience counts; just label it.
+    validations:
+      required: true
+  - type: dropdown
+    id: role
+    attributes:
+      label: Your vantage point
+      options:
+        - I hire or recruit in Germany
+        - I work in HR / Personal in Germany
+        - I am an employment lawyer / Fachanwalt
+        - I applied in Germany and learned this the hard way
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: scope
+    attributes:
+      label: How widely does the correction apply?
+      options:
+        - Everywhere in Germany
+        - Mainly one sector (say which above)
+        - Mainly one region or employer type
+        - Only DACH outside Germany (Austria / Switzerland)

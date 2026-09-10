@@ -1,0 +1,48 @@
+name: I disagree with a Zeugnis grade
+description: "/wingman:zeugnis graded a sentence differently from how you read it."
+title: "[zeugnis] "
+labels: ["zeugnis", "needs-source"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Anonymise before posting.** Replace names, the employer and dates. The wording is what matters; nothing else is needed.
+  - type: textarea
+    id: sentence
+    attributes:
+      label: The exact sentence (anonymised)
+      placeholder: "Sie erledigte die ihr übertragenen Aufgaben stets zu unserer vollen Zufriedenheit."
+    validations:
+      required: true
+  - type: dropdown
+    id: which
+    attributes:
+      label: Which part of the Zeugnis is it?
+      options:
+        - Leistung (performance)
+        - Verhalten / Führung (conduct)
+        - Schlussformel (closing)
+        - A coded phrase elsewhere
+    validations:
+      required: true
+  - type: input
+    id: wingman
+    attributes:
+      label: Grade Wingman gave
+      placeholder: "2 (gut)"
+    validations:
+      required: true
+  - type: input
+    id: yours
+    attributes:
+      label: Grade you would give
+      placeholder: "1 (sehr gut)"
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why?
+      description: The reasoning, and how you know - HR practice, a Zeugnis guide you trust, a court ruling, or experience on either side of the desk.
+    validations:
+      required: true

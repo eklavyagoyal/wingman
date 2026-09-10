@@ -1,0 +1,64 @@
+name: Form filling failed on an ATS
+description: "/wingman:apply could not find, fill, or scout a field on Personio, softgarden, SuccessFactors, Interamt, or another system."
+title: "[apply] "
+labels: ["apply", "ats"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The ATS notes in `shared/references/ats.md` are **structural, not element-level**, and the German systems have never been driven live by the maintainer. Every report here makes them real. Do not paste your personal data - describe the field, not its value.
+  - type: dropdown
+    id: ats
+    attributes:
+      label: Which system?
+      options:
+        - Personio
+        - softgarden
+        - SAP SuccessFactors
+        - Interamt
+        - Workday
+        - Greenhouse
+        - Lever
+        - d.vinci / rexx / Concludis / BITE
+        - join.com
+        - Unknown / company's own form
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Posting URL (optional)
+      description: Public job URL, if you are comfortable sharing it. Leave blank otherwise.
+  - type: dropdown
+    id: step
+    attributes:
+      label: Where did it go wrong?
+      options:
+        - Navigating to the form
+        - Scouting the fields (read_page found nothing / the wrong things)
+        - A specific field would not fill
+        - A dropdown or radio group
+        - File upload handling
+        - The DSGVO / consent checkbox
+        - Multi-page wizard navigation
+        - It tried to do something it should not have (submit, consent, send)
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What Wingman said or did, and what the form actually looked like. Field labels are useful; field values are not.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot (optional)
+      description: Redact anything personal first.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety
+      options:
+        - label: Wingman did NOT submit, send, or tick a consent box on its own. (If it did, say so above - that is the most important bug we can have.)
