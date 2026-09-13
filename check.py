@@ -118,28 +118,35 @@ for p in ROOT.glob("skills/**/*.md"):
 # "27 assertions" is a credibility claim on a public README. Hand-maintained
 # counts drift the moment a test is added, and a stale number is worse than
 # none - it says the author is not running their own suite.
+#
+# Discovered from the README rather than listed here, so a new tool is covered
+# the moment it is advertised. Previously this hardcoded two of the four and
+# the other two drifted unguarded.
 import subprocess
 readme = (ROOT / "README.md").read_text()
-for tool, label in (("mappe.mjs", "the PDF renderer"), ("posting.mjs", "the posting extractor")):
-    m = re.search(rf"{re.escape(tool)} --selftest\s*#\s*(\d+) assertions", readme)
-    if not m:
-        fail(f"README does not state an assertion count for {tool} ({label})")
+advertised = re.findall(r"node (tools/[\w.-]+)((?:\s+--[\w-]+)*)\s*#\s*(\d+) assertions", readme)
+if not advertised:
+    fail("README advertises no assertion counts - the credibility claim was removed or reworded")
+for rel, flags, claimed in advertised:
+    tool = ROOT / rel
+    if not tool.exists():
+        fail(f"README advertises {rel}, which does not exist")
         continue
-    claimed = int(m.group(1))
+    args = ["node", str(tool)] + flags.split()
     try:
-        out = subprocess.run(["node", str(ROOT / "tools" / tool), "--selftest"],
-                             capture_output=True, text=True, timeout=180).stdout
+        out = subprocess.run(args, capture_output=True, text=True, timeout=300).stdout
     except Exception as e:
-        fail(f"could not run {tool} --selftest to verify the README count: {e}")
+        fail(f"could not run {rel} to verify its README count: {e}")
         continue
     actual = sum(1 for line in out.splitlines() if line.startswith("ok"))
-    if actual != claimed:
-        fail(f"README claims {claimed} assertions for {tool}, the suite has {actual}")
+    if actual == 0 and "skip" in out:
+        continue  # no browser on this machine; CI enforces it
+    if actual != int(claimed):
+        fail(f"README claims {claimed} assertions for {rel}, the suite has {actual}")
 
 n_skills = len(list(ROOT.glob("skills/*/SKILL.md")))
-if f"skills-{n_skills}-" not in readme and f"**{n_skills} skills**" not in readme and f"skills/{n_skills}" not in readme:
-    if not re.search(rf"\b{n_skills}\b\s*(?:skills|skills over)", readme):
-        fail(f"README does not state the real skill count ({n_skills})")
+if not re.search(rf"\b{n_skills}\b\s*(?:skills|skills over)", readme) and f"skills-{n_skills}-" not in readme:
+    fail(f"README does not state the real skill count ({n_skills})")
 
 # 5. safety invariants must survive edits
 #

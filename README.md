@@ -257,7 +257,7 @@ python3 check.py                    # structure, dead links, DATA_DIR drift, 13 
 node tools/mappe.mjs --selftest     # 27 assertions - the PDF renderer
 node tools/posting.mjs --selftest   # 23 assertions - the posting extractor
 node tools/test-scout.mjs           # 15 assertions - form scouting, in headless Chrome
-node tools/arbeitsagentur.mjs --selftest   # 17 assertions - the federal job board API
+node tools/arbeitsagentur.mjs --selftest   # 19 assertions - the federal job board API
 ```
 
 All three run in CI on every push and pull request. The renderer test fails rather than skips if the runner has no browser, so a broken renderer cannot pass quietly.
