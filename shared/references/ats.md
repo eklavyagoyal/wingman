@@ -17,7 +17,8 @@ Ranked by how often you will actually meet them:
 | **Greenhouse / Lever / Ashby** | Berlin startups, international tech | Easy to medium | No |
 | **Interamt** | Öffentlicher Dienst | Hard — account, and the longest forms in the country | No |
 | **d.vinci, rexx, Concludis, BITE** | Corporates, public bodies, Mittelstand | Unknown — scout | No |
-| **join.com** | Startups | Easy | Partly — no JSON-LD, so the extractor falls back to selectors |
+| **join.com** | Startups | Easy | Partly — confirmed **no** JSON-LD, so the extractor falls back to selectors |
+| **StepStone** | The dominant commercial board | Medium | Partly — confirmed **no** JSON-LD on a 400 KB page; scrape with a scoped selector, never `get_page_text` |
 
 A **No** means the section below is structural reasoning, not observation. Treat it as a starting hypothesis and scout the live form.
 
@@ -87,6 +88,12 @@ Extract the parameters individually rather than passing whole URLs around.
 ## Interamt
 
 The public-sector portal. Account required, so the user signs in.
+
+> **Fetch behaviour verified 2026-09-13.** The form itself is not — it is behind the account.
+
+**JavaScript is mandatory.** `interamt.de/koop/app/trefferliste` answers HTTP 200 with 96 KB, of which the visible text is a 4,000-character *"Bitte aktivieren Sie JavaScript"* notice and **zero job links**. A plain fetch looks successful and contains no jobs. `tools/posting.mjs` exits 3 here (no JSON-LD, and none is published), which is correct — **use the browser for Interamt, always.**
+
+Two more mechanics: `www.interamt.de` redirects twice to the apex domain, and it is Apache Wicket, so URLs carry a `?0` page-version parameter tied to a server-side session. Treat a Wicket URL captured mid-session as **not durable** — record the Stellen-ID and the search route in `posting.md` rather than trusting the URL to resolve later for the candidate.
 
 Expect the longest forms in German hiring: the full Bewerbungsmappe including Zeugnisse, proof of qualifications, Entgeltgruppe, previous public-sector employment, and a voluntary Schwerbehinderung question. Strictly German-language.
 

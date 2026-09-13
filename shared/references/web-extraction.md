@@ -28,6 +28,8 @@ Job boards and careers pages are among the worst pages on the web to read progra
 
    **Never treat exit 3 as "extract it another way and carry on."** It fires on the failure this whole file exists to prevent: a page that answers HTTP 200 and contains no job. softgarden serves an *expired* posting as **200 with a 123-byte tracking pixel** — `response.ok` passes, the text is empty, and an evaluation built on it is invented.
 
+   **Where JSON-LD is and is not published**, all checked directly: Personio **yes**, softgarden **yes** (and it adds `validThrough` and often `baseSalary`); StepStone **no**, join.com **no**, Interamt **no**. On the last three the extractor exits 3 and you fall back to a scoped selector — that is the tool working, not failing.
+
 1. **A structured feed, if one exists.** Personio tenants often expose a public XML jobs feed; the Bundesagentur für Arbeit has a Jobsuche API. A feed is cheaper, more stable, and better-formed than any scrape. Always check for one first.
 2. **`javascript_tool` with a selector** scoped to the elements you actually want. Return a joined string of listing rows, capped in both count and per-item length:
 
