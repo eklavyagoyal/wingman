@@ -8,16 +8,18 @@ How to reach and fill the systems German employers actually use.
 
 Ranked by how often you will actually meet them:
 
-| System | Where | Difficulty |
-|---|---|---|
-| **Personio** | DACH small and mid-size employers. The most common by a wide margin. | Easy |
-| **SAP SuccessFactors** | Large German corporates | Hard — account required |
-| **softgarden** | German mid-market | Easy |
-| **Workday** | International corporates operating in Germany | Hard — account required |
-| **Greenhouse / Lever / Ashby** | Berlin startups, international tech | Easy to medium |
-| **Interamt** | Öffentlicher Dienst | Hard — account, and the longest forms in the country |
-| **d.vinci, rexx, Concludis, BITE** | Corporates, public bodies, Mittelstand | Unknown — scout |
-| **join.com** | Startups | Easy |
+| System | Where | Difficulty | Verified |
+|---|---|---|---|
+| **Personio** | DACH small and mid-size employers. The most common by a wide margin. | Easy | **Yes** — form scouted live 2026-09-10 |
+| **SAP SuccessFactors** | Large German corporates | Hard — account required | No |
+| **softgarden** | German mid-market | Easy | **Yes** — URL shape, JSON-LD and the expiry trap, 2026-09-13 |
+| **Workday** | International corporates operating in Germany | Hard — account required | No |
+| **Greenhouse / Lever / Ashby** | Berlin startups, international tech | Easy to medium | No |
+| **Interamt** | Öffentlicher Dienst | Hard — account, and the longest forms in the country | No |
+| **d.vinci, rexx, Concludis, BITE** | Corporates, public bodies, Mittelstand | Unknown — scout | No |
+| **join.com** | Startups | Easy | Partly — no JSON-LD, so the extractor falls back to selectors |
+
+A **No** means the section below is structural reasoning, not observation. Treat it as a starting hypothesis and scout the live form.
 
 ---
 
@@ -38,7 +40,17 @@ Ranked by how often you will actually meet them:
 
 ## softgarden
 
-`<company>.softgarden.io`, frequently white-labelled onto the employer's own domain. Native form. Offers quick-apply via LinkedIn or Xing alongside the full form — the full form gives better control over what gets submitted.
+`<company>.softgarden.io`, frequently white-labelled onto the employer's own domain. Server-rendered (Apache Wicket), so the HTML arrives complete — no hydration wait.
+
+> **Verified 2026-09-13** against two live tenants. Everything in this section was observed, not assumed.
+
+**The expired-posting trap.** A softgarden job that is no longer live answers **HTTP 200 with a 123-byte body containing only a tracking pixel** (`tracker.softgarden.de/tracker/view/<jobId>/<n>/view.gif`). It is not a 404 and it does not say the job is closed. Anything that checks `response.ok` sails straight through it into an empty posting. `tools/posting.mjs` detects this and exits 3; if you are reading a softgarden page any other way, check the body length before you trust it.
+
+**URL shape.** Listings at `/vacancies` (or `/<lang>/vacancies`) link to `/job/<jobId>/<slug>?jobDbPVId=<publicationId>&l=<lang>`. The slug and `jobDbPVId` turned out to be **decorative** — `/job/<jobId>` alone serves the same page for a live job. So a bare `/job/<id>` returning a pixel means *expired*, not *malformed URL*. Worth knowing, because the obvious reading is the wrong one.
+
+**Extraction.** Emits schema.org **JSON-LD `JobPosting`**, and unlike Personio it fills in **`validThrough`** and often `baseSalary`. Use `tools/posting.mjs`; there is no XML feed and no public REST endpoint (`/api/rest/v3/*` answers a structured 404, `/jobs.xml`, `/rss` and `/feed` are all 404).
+
+**Applying.** The posting page has no inline form. The apply button links out to `jobdb.softgarden.de/jobdb/public/jobposting/applyonline/click?jp=<jobId>`, which is where the form lives — scout it there rather than on the posting page. Quick-apply via LinkedIn and Xing is offered alongside the full form; the full form gives better control over what gets submitted.
 
 ## SAP SuccessFactors
 

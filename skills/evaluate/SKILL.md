@@ -16,11 +16,13 @@ Per `shared/references/prerequisites.md`: CV **and profile both required**. Scor
 
 ## Step 1: Get the posting
 
-- **URL** → fetch per `shared/references/web-extraction.md`. Extract with a targeted `javascript_tool` selector, not `get_page_text`.
+- **URL** → `node "${CLAUDE_PLUGIN_ROOT}/tools/posting.mjs" <url>` first. It reads the JSON-LD that Personio and softgarden both publish, and it exits `3` rather than hand you a page that returned HTTP 200 with no job in it. Only if it exits `3` for "no structured data" do you fall back to a scoped selector per `shared/references/web-extraction.md`. Never `get_page_text`.
 - **Pasted text** → use it directly.
 - **`last`** → the most recently modified job folder.
 
 If the page cannot be read, **stop and ask the user to paste it.** Never evaluate from a job title alone, and never fill gaps by guessing what an employer probably wants.
+
+If the extractor reports the posting **expired or closed**, say so plainly and stop — that is a finished answer, not a setback. Offer to look for the role on the employer's current vacancies page. Any `WARN` it prints (a `validThrough` in the past, a posting open for many months) goes into **Block G**, where it is reported and left score-neutral.
 
 Save to `DATA_DIR/jobs/[company-slug]-[date]/posting.md`, employer URL at the top.
 

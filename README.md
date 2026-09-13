@@ -250,14 +250,17 @@ Everything lives in `.wingman/` on your machine, gitignored. No account, no tele
 
 ## Status
 
-**v0.1.4** — mostly instruction files: 14 skills over a German knowledge layer, plus a zero-dependency PDF renderer.
+**v0.2.0** — mostly instruction files: 14 skills over a German knowledge layer, plus a zero-dependency PDF renderer.
 
 ```bash
-python3 check.py                  # structure, dead links, DATA_DIR drift, 13 safety invariants
-node tools/mappe.mjs --selftest   # 22 assertions
+python3 check.py                    # structure, dead links, DATA_DIR drift, 13 safety invariants
+node tools/mappe.mjs --selftest     # 27 assertions - the PDF renderer
+node tools/posting.mjs --selftest   # 23 assertions - the posting extractor
 ```
 
-**Well-grounded** — document conventions, Zeugnis decoding, the language decision, comp and contract terms, board coverage, PDF rendering. The images above are real output, inspected visually.
+All three run in CI on every push and pull request. The renderer test fails rather than skips if the runner has no browser, so a broken renderer cannot pass quietly.
+
+**Well-grounded** — document conventions, Zeugnis decoding, the language decision, comp and contract terms, board coverage, PDF rendering. The images above are real output, inspected visually. **Personio and softgarden are verified against live postings**, including the way softgarden serves an expired job as HTTP 200 with a tracking pixel rather than a 404.
 
 **Verified against a live form** — Personio, on one tenant: no iframe, form at `/job/<id>/apply`, standard field keys, required-ness in the label text, multi-file uploads, submit label „Bewerbung senden". Recorded in `shared/references/ats.md`. **Still structural only** — softgarden, SuccessFactors, Interamt: URL shapes and conventional fields, not element-level; skills scout every live form before filling.
 

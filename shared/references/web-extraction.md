@@ -10,6 +10,24 @@ Job boards and careers pages are among the worst pages on the web to read progra
 
 ## Preference order
 
+0. **For a single posting, run the extractor.**
+
+   ```bash
+   node "${CLAUDE_PLUGIN_ROOT}/tools/posting.mjs" <url> > DATA_DIR/jobs/[folder]/posting.md
+   ```
+
+   Both **Personio and softgarden** emit a schema.org **JSON-LD `JobPosting`** — between them that is most German employers. The extractor reads it directly, so the title, employer, location, employment type, `datePosted`, and sometimes `validThrough` and `baseSalary` arrive typed instead of guessed, and the description comes through without the page furniture.
+
+   Read its exit code, it is the point of the tool:
+
+   | Exit | Meaning |
+   |:---:|---|
+   | `0` | Usable posting on stdout. Any `WARN` on stderr belongs in Block G. |
+   | `3` | The page was reached but **cannot be trusted** — expired, empty, or no structured data. It prints why. Do not evaluate; say so and ask the user to paste. |
+   | `2` | Could not fetch at all. |
+
+   **Never treat exit 3 as "extract it another way and carry on."** It fires on the failure this whole file exists to prevent: a page that answers HTTP 200 and contains no job. softgarden serves an *expired* posting as **200 with a 123-byte tracking pixel** — `response.ok` passes, the text is empty, and an evaluation built on it is invented.
+
 1. **A structured feed, if one exists.** Personio tenants often expose a public XML jobs feed; the Bundesagentur für Arbeit has a Jobsuche API. A feed is cheaper, more stable, and better-formed than any scrape. Always check for one first.
 2. **`javascript_tool` with a selector** scoped to the elements you actually want. Return a joined string of listing rows, capped in both count and per-item length:
 

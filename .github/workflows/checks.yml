@@ -49,6 +49,12 @@ jobs:
       # A skill whose frontmatter name drifts from its directory silently stops
       # being invocable as /wingman:<dir>. check.py covers this; assert the
       # command surface too, so a rename cannot quietly drop a command.
+      - name: Posting extractor selftest
+        run: |
+          set -o pipefail
+          node tools/posting.mjs --selftest | tee /tmp/posting.log
+          grep -q '^all passed' /tmp/posting.log
+
       - name: Command surface is intact
         run: |
           expected=14
