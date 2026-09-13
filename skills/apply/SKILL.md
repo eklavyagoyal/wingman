@@ -64,7 +64,15 @@ Browser setup per `shared/references/web-extraction.md`. Detect the ATS from the
 - **Interamt** — account required, same handling. Expect the full Mappe plus Tarif and Schwerbehinderung fields.
 - **Unknown** — navigate, screenshot, identify. If unrecognizable, say so and ask.
 
-**Scout before filling.** `read_page(filter="interactive")` (scroll through for Workday). Determine: which upload fields exist, whether a cover letter is wanted, whether a DSGVO checkbox is present, and any unusual required field. The German ATS notes in the reference are **structural, not element-level** — never assume a ref from the file.
+**Scout before filling — with the DOM, not the accessibility tree.** Read `${CLAUDE_PLUGIN_ROOT}/tools/scout-form.js` and evaluate it with `javascript_tool`. It returns the complete inventory: every field with its full label, which are required *by label text*, the select options, the upload fields, and separate `consent` and `voluntary` lists.
+
+**Do not scout with `read_page` alone.** Measured against a Personio-shaped form, `read_page(filter="interactive")` returned 8 of 15 controls. The seven it dropped were every select, both file inputs, all three Schwerbehinderung radios, and the DSGVO consent checkbox — precisely the controls that must be surfaced to the user rather than answered. A scout that cannot see the consent box cannot report it, and "never tick a consent box" then holds only because nothing mentioned one was there.
+
+Two further traps confirmed on the same form: `read_page` returns an **empty tree** until the pane has rendered, so an empty result means *take a screenshot and re-read*, never "this form has no fields"; and it named the date field from its `TT.MM.JJJJ` placeholder rather than its `Verfügbar ab* (erforderlich)` label, which loses the required marker.
+
+Use `read_page` for the **refs you interact with**, and `scout-form.js` for **what exists**. Where they disagree, the DOM is right.
+
+The German ATS notes in the reference are **structural, not element-level** — never assume a ref from the file.
 
 ## Step 4: Generate what the form needs
 

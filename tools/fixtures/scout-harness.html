@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>scout harness</title></head>
+<body>
+<div id="mount"></div>
+<pre id="result">PENDING</pre>
+<script>
+// Loads the form fixture, runs tools/scout-form.js against it, and writes the
+// result where --dump-dom can read it. Same origin, so both fetches work.
+(async () => {
+  try {
+    const html = await (await fetch('./personio-form.html')).text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    document.getElementById('mount').appendChild(doc.body);
+    const src = await (await fetch('../scout-form.js')).text();
+    // eval is deliberate and safe here, and mirrors production. scout-form.js
+    // is an IIFE whose RETURN VALUE is the inventory - that shape exists
+    // because the skill delivers it through `javascript_tool`, which evaluates
+    // a string and hands back the last expression. A <script src> tag would
+    // run it and discard the result.
+    // The input is not untrusted: it is a fixed file from this repository,
+    // fetched same-origin from a loopback server this test just started. No
+    // user data, no network content, and the harness only ever runs in CI.
+    // eslint-disable-next-line no-eval
+    const out = eval(src);
+    document.getElementById('result').textContent = out;
+    report(out);
+  } catch (e) {
+    document.getElementById('result').textContent = 'ERROR ' + e.message;
+    report(JSON.stringify({ error: e.message }));
+  }
+
+  // Chrome's --dump-dom hangs on some machines, so the harness posts its
+  // result back to the test server instead of relying on the DOM being
+  // scraped out of a headless process.
+  function report(body) {
+    fetch('/__result', { method: 'POST', body }).catch(() => {});
+  }
+})();
+</script>
+</body>
+</html>

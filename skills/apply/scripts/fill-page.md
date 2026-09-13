@@ -21,7 +21,9 @@ Work top to bottom in the order fields appear on the page.
 
 **After each field**, confirm the value took and no error state appeared. Two attempts maximum per field, then record it as failed and move on.
 
-**Required fields**: on Personio the DOM `required` attribute is false everywhere and the label carries `* (erforderlich)`. Decide required-ness from the label text.
+**Required fields**: on Personio the DOM `required` attribute is false everywhere and the label carries `* (erforderlich)`. Decide required-ness from the label text. Never truncate a label when matching — the marker is at the end, so a clipped label reads as optional.
+
+**Controls the accessibility tree hides.** The inventory in the fill plan comes from `tools/scout-form.js`, not from `read_page`, because `read_page` omitted every select, file input, radio and checkbox on a plain Personio-shaped form. If a field is in the plan but has no ref, get one with `find`, or click it by coordinate from a screenshot. **Never conclude a planned field is absent because `read_page` did not list it** — that is how a required question ends up silently unanswered.
 
 ## Hard stops
 
