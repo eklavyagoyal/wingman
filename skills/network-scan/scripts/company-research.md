@@ -31,7 +31,7 @@ Reasonable priors when search is inconclusive: German Mittelstand overwhelmingly
 
 For each company, gather what a candidate would actually want to know before spending an evening on an application:
 
-**kununu** is the priority. It is far better populated for German employers than the international review sites. Pull the rating and read what recent reviews actually complain about — unpaid overtime, turnover, management style, whether salaries arrive on time. A 2.6 with consistent Überstunden complaints is a stronger signal than anything in the job ad.
+**[kununu](https://www.kununu.com/de)** is the priority. It is far better populated for German employers than the international review sites. Pull the rating and read what recent reviews actually complain about — unpaid overtime, turnover, management style, whether salaries arrive on time. A 2.6 with consistent Überstunden complaints is a stronger signal than anything in the job ad.
 
 **Then**: what the company does and its size, ownership and funding, whether there is a **Betriebsrat**, whether it is bound by a **Tarifvertrag**, and any recent news — layoffs, funding, acquisition, insolvency.
 

@@ -24,7 +24,7 @@ Stored in `profile.md` under `Arbeitserlaubnis`.
 
 ## Blaue Karte EU — the mechanism
 
-Governed by §18g AufenthG. Two hard requirements:
+Governed by [§18g AufenthG](https://www.gesetze-im-internet.de/aufenthg_2004/__18g.html). The current salary thresholds are published by [Make it in Germany](https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card) — look them up, never quote them from memory. Two hard requirements:
 
 1. **A recognized or comparable university degree** — see anabin below.
 2. **A gross annual salary at or above a threshold.**
@@ -41,7 +41,7 @@ Two thresholds exist: a **general** one (Regelberufe) and a **lower** one for **
 
 ## anabin — degree recognition
 
-`anabin.kmk.org` is the German database of foreign degrees and institutions. For a non-EU degree this is the gate that decides everything downstream.
+[anabin.kmk.org/anabin.html](https://anabin.kmk.org/anabin.html) is the German database of foreign degrees and institutions. For a non-EU degree this is the gate that decides everything downstream.
 
 - Institutions carry a rating; **H+** means recognized as equivalent to a German higher-education institution.
 - Both the **institution** and the **degree** need to check out.

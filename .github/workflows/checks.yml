@@ -1,0 +1,57 @@
+name: checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # check.py needs no dependencies; ubuntu-latest ships python3 and Chrome.
+      - name: Structure, dead links, DATA_DIR drift, safety invariants
+        run: python3 check.py
+
+      - name: Locate Chrome
+        id: chrome
+        run: |
+          for p in /usr/bin/google-chrome /usr/bin/google-chrome-stable /usr/bin/chromium /usr/bin/chromium-browser; do
+            if [ -x "$p" ]; then echo "found=$p" >> "$GITHUB_OUTPUT"; echo "Chrome: $p"; exit 0; fi
+          done
+          echo "No Chrome on the runner - installing" && sudo apt-get update -qq && sudo apt-get install -y -qq chromium-browser
+          echo "found=/usr/bin/chromium-browser" >> "$GITHUB_OUTPUT"
+
+      # The renderer's selftest silently skips PDF work when no browser is
+      # present. In CI that would hide a broken renderer, so fail on the skip.
+      - name: PDF renderer selftest
+        run: |
+          set -o pipefail
+          node tools/mappe.mjs --selftest 2>&1 | tee /tmp/selftest.log
+          if grep -q 'skip - no Chrome' /tmp/selftest.log; then
+            echo "::error::Renderer selftest skipped PDF rendering - no browser found. Coverage would be incomplete."
+            exit 1
+          fi
+          n=$(grep -c '^ok' /tmp/selftest.log)
+          echo "$n assertions passed"
+          [ "$n" -ge 27 ] || { echo "::error::Expected at least 27 assertions, got $n"; exit 1; }
+
+      # A skill whose frontmatter name drifts from its directory silently stops
+      # being invocable as /wingman:<dir>. check.py covers this; assert the
+      # command surface too, so a rename cannot quietly drop a command.
+      - name: Command surface is intact
+        run: |
+          expected=14
+          n=$(ls -d skills/*/ | wc -l | tr -d ' ')
+          [ "$n" = "$expected" ] || { echo "::error::Expected $expected skills, found $n"; exit 1; }
+          echo "$n skills"

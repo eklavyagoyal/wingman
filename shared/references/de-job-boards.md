@@ -6,8 +6,8 @@ US-built job tools scan LinkedIn, Indeed, Greenhouse, Lever and Ashby. In German
 
 | Board | Why it matters |
 |---|---|
-| **Bundesagentur für Arbeit** — `arbeitsagentur.de/jobsuche` | The federal employment agency's board. The single largest listing volume in Germany by a wide margin, and it carries Mittelstand and regional employers that appear nowhere else. Free, no account needed to search. Has a public Jobsuche API. Underused by every competing tool. |
-| **StepStone** — `stepstone.de` | The dominant commercial board. Strong for Mittelstand and corporates. Also publishes salary reports worth citing in comp research. |
+| **Bundesagentur für Arbeit** — [arbeitsagentur.de/jobsuche](https://www.arbeitsagentur.de/jobsuche/) | The federal employment agency's board. The single largest listing volume in Germany by a wide margin, and it carries Mittelstand and regional employers that appear nowhere else. Free, no account needed to search. Has a public Jobsuche API. Underused by every competing tool. |
+| **StepStone** — [stepstone.de](https://www.stepstone.de/) | The dominant commercial board. Strong for Mittelstand and corporates. Also publishes salary reports worth citing in comp research. |
 | **Personio-hosted career pages** — `<slug>.jobs.personio.de` / `.com` | Personio is the default HR system for DACH small and mid-size companies, so thousands of career pages live here. Many tenants expose a **public XML jobs feed** — cheaper and more reliable than scraping. |
 | **LinkedIn Jobs** | Best coverage for Berlin, international tech, and English-language roles. Weakest for traditional Mittelstand. |
 | **Indeed.de** | Broad aggregation, heavy duplication with other boards. Dedupe against them. |
@@ -16,7 +16,7 @@ US-built job tools scan LinkedIn, Indeed, Greenhouse, Lever and Ashby. In German
 
 | Board | Segment |
 |---|---|
-| **Interamt** — `interamt.de` | **Öffentlicher Dienst.** The public-sector portal. If the candidate is open to public service, nothing else covers it. Applications are German-only and highly formal. |
+| **Interamt** — [interamt.de](https://www.interamt.de/koop/app/trefferliste) | **Öffentlicher Dienst.** The public-sector portal. If the candidate is open to public service, nothing else covers it. Applications are German-only and highly formal. |
 | **Bund.de** | Federal government positions. |
 | **Xing Jobs** (New Work) | DACH professional network. Fading against LinkedIn but still used by conservative employers. |
 | **join.com** | Startup-heavy, doubles as an ATS. |

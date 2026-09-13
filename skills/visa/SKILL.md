@@ -22,7 +22,7 @@ EU/EEA/Swiss citizen or Niederlassungserlaubnis → say there are no constraints
 
 For a non-EU degree, and a candidate without permanent residence, this is the gate that decides everything downstream.
 
-Check `anabin.kmk.org` for **both** the institution and the degree. An institution rated **H+** counts as equivalent to a German higher-education institution.
+Check [anabin](https://anabin.kmk.org/anabin.html) for **both** the institution and the degree. An institution rated **H+** counts as equivalent to a German higher-education institution.
 
 - **Recognized** → record it in `profile.md` and move on
 - **Not found or not equivalent** → explain the **Zeugnisbewertung** route (a statement of comparability from the ZAB), and that it takes time and a fee

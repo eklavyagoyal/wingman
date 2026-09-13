@@ -1,6 +1,6 @@
 # Arbeitszeugnis: Reading the Code
 
-A German employment reference (**Arbeitszeugnis**) is legally required to be both *truthful* and *benevolent* (§109 GewO: "wahr und wohlwollend"). Those two duties conflict, so German employers evolved a coded register: the letter reads warmly and grades you precisely. Every HR person in Germany reads the code. Most candidates do not.
+A German employment reference (**Arbeitszeugnis**) is legally required to be both *truthful* and *benevolent* ([§109 GewO](https://www.gesetze-im-internet.de/gewo/__109.html): "wahr und wohlwollend"). Those two duties conflict, so German employers evolved a coded register: the letter reads warmly and grades you precisely. Every HR person in Germany reads the code. Most candidates do not.
 
 **Two jobs for this reference:**
 1. **Audit the candidate's own Zeugnisse before they get attached.** A politely-worded Zeugnis can carry a grade of 4 or a conduct red flag. The candidate has a legal right to demand correction — but only if they know.
