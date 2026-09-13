@@ -61,6 +61,12 @@ jobs:
           node tools/test-scout.mjs | tee /tmp/scout.log
           grep -q '^all passed' /tmp/scout.log
 
+      - name: Arbeitsagentur query and parsing selftest
+        run: |
+          set -o pipefail
+          node tools/arbeitsagentur.mjs --selftest | tee /tmp/ba.log
+          grep -q '^all passed' /tmp/ba.log
+
       - name: Command surface is intact
         run: |
           expected=14

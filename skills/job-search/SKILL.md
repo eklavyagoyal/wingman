@@ -33,7 +33,18 @@ Choose per profile rather than scanning everything. Ask with `AskUserQuestion` o
 | Academia / research | + academics.de, jobvector |
 | Graduate / Werkstudent | + Absolventa, Get in IT |
 
-**Arbeitsagentur is always in the set.** It has the largest volume in Germany and carries employers that appear nowhere else.
+**Arbeitsagentur is always in the set.** It has the largest volume in Germany and carries employers that appear nowhere else — and it has a real JSON API, so it needs no browser at all:
+
+```bash
+node "${CLAUDE_PLUGIN_ROOT}/tools/arbeitsagentur.mjs" "Softwareentwickler" Karlsruhe --umkreis 30
+node "${CLAUDE_PLUGIN_ROOT}/tools/arbeitsagentur.mjs" "Pflegefachkraft" München --json    # to post-process
+```
+
+Search **German job titles**. The board indexes by official Berufsbezeichnung, so `Softwareentwickler` finds far more than `Software Engineer`, and `Pflegefachkraft` more than `Nurse`. Run both if the role has a common English title in Germany.
+
+It excludes **Zeitarbeit and Personalvermittlung at source** and tells you how many it hid. On a sample Karlsruhe software search that was 27 of 84 — a third of the visible market is intermediaries, so never present the filtered count as the whole market, and never present an agency listing as a direct role. `--include-agencies` shows them, labelled.
+
+Where the API states a **Gehaltsspanne**, use it. German ads rarely name a salary, so a real range from the BA beats any researched estimate, and it belongs in Block E of the evaluation.
 
 ## Step 3: Search
 

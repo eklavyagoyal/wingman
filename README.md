@@ -139,7 +139,7 @@ It asks **once** and remembers. Re-asking is how a tool like this becomes annoyi
 | | |
 |---|---|
 |`setup`| CV, preferences, German level, work authorization, Zeugnisse, work-history interview |
-|`job-search`| Searches where German jobs actually are — **Arbeitsagentur** (largest listing volume in the country), StepStone, Personio feeds, Interamt, LinkedIn — with **Zeitarbeit detection**, so leased-labour ads are never passed off as direct roles |
+|`job-search`| Searches where German jobs actually are — **Arbeitsagentur** over its real JSON API, plus StepStone, Personio feeds, Interamt, LinkedIn. **Zeitarbeit and Personalvermittlung are excluded at source**, and it reports how many it hid: on a sample Karlsruhe search that was 27 of 84 listings |
 |`evaluate`| One posting → an A–H report and a **1–5 fit score**. Every requirement row is marked `quoted`, `inferred`, or `gap`, so no claimed match is unsourced |
 |`tailor-cv`| A tabellarischer Lebenslauf, or an English CV. Two different documents, each written from your profile — never a translation of the other |
 |`anschreiben`| A DIN 5008 Anschreiben, or an English cover letter |
@@ -250,13 +250,14 @@ Everything lives in `.wingman/` on your machine, gitignored. No account, no tele
 
 ## Status
 
-**v0.3.0** — mostly instruction files: 14 skills over a German knowledge layer, plus a zero-dependency PDF renderer.
+**v0.4.0** — mostly instruction files: 14 skills over a German knowledge layer, plus a zero-dependency PDF renderer.
 
 ```bash
 python3 check.py                    # structure, dead links, DATA_DIR drift, 13 safety invariants
 node tools/mappe.mjs --selftest     # 27 assertions - the PDF renderer
 node tools/posting.mjs --selftest   # 23 assertions - the posting extractor
 node tools/test-scout.mjs           # 15 assertions - form scouting, in headless Chrome
+node tools/arbeitsagentur.mjs --selftest   # 17 assertions - the federal job board API
 ```
 
 All three run in CI on every push and pull request. The renderer test fails rather than skips if the runner has no browser, so a broken renderer cannot pass quietly.
