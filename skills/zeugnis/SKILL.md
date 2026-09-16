@@ -75,9 +75,30 @@ This is often the single richest untapped source of CV material the candidate al
 
 ## Step 6: Save
 
-Write `DATA_DIR/zeugnisse/audit.md` with one entry per document: employer, dates, grades, quoted evidence, decision taken. Update the Zeugnisse table in `profile.md` with each grade.
+Write `DATA_DIR/zeugnisse/audit.md`, one entry per document. **Each entry must open with this block, verbatim in this shape**, because `/wingman:mappe` reads it to decide whether it may attach the document — free prose there leaves it guessing:
 
-`/wingman:mappe` reads this and refuses to assemble an unaudited Zeugnis.
+```markdown
+## Vorbild Systems GmbH · 08/2018 – 02/2021 · qualifiziertes Zeugnis
+
+- **File**: `zeugnisse/2021-02_arbeitszeugnis_vorbild-systems.md`
+- **Leistung**: 2 (gut)
+- **Verhalten**: ok            <!-- ok | concern | missing -->
+- **Schluss**: kühl            <!-- warm | kühl | fehlt -->
+- **Attach**: yes              <!-- yes | ask | no -->
+- **Audited**: 2026-09-13
+```
+
+`Attach` is the contract, and it is a judgement you make from the grades:
+
+| Set it to | When |
+|---|---|
+| `yes` | Grade 1–2, Vorgesetzte named, nothing coded. It helps, or is at least neutral. |
+| `ask` | Grade 3, a cool closing, a reversed conduct order, or anything you are unsure of. `mappe` will put the decision to the candidate. |
+| `no` | Grade 4–5, `bemüht`, a missing conduct sentence, or a coded phrase. Never attach one of these without the candidate deciding to. |
+
+Then the quoted evidence and reasoning below the block, in whatever depth the document warrants. Write that part in the candidate's language, not in a template.
+
+Also update the Zeugnisse table in `profile.md` with each grade.
 
 ---
 

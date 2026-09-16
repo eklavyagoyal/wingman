@@ -20,12 +20,22 @@ In `DATA_DIR/zeugnisse/`: the attachment set.
 
 **Do not assemble an unaudited Arbeitszeugnis into a Mappe.** A politely-worded reference can carry a grade of 4 or a conduct red flag in code, and attaching one unread is a self-inflicted wound.
 
-Check `zeugnisse/audit.md`. For anything unaudited, run `/wingman:zeugnis` now.
+Check `zeugnisse/audit.md`. For anything with no entry there, run `/wingman:zeugnis` now — an unaudited Zeugnis does not go in.
 
-If an audit found a problem, ask with `AskUserQuestion` before including it:
+Each entry opens with an **`Attach:`** line. Act on it, do not re-derive it:
+
+| `Attach` | Do |
+|---|---|
+| `yes` | Include it. No question needed. |
+| `ask` | **Ask** with `AskUserQuestion`, quoting the audit's own finding so the choice is informed. Options below. |
+| `no` | Leave it out and say why, in one line. Include it only if the candidate, having heard the finding, asks you to. |
+
+When asking:
 - **Request a correction** from the former employer (§109 GewO)
 - **Include it anyway** — grade 3 is common and not disqualifying
 - **Omit it** and write `Zeugnisse werden auf Wunsch nachgereicht`
+
+If an entry exists but has no `Attach:` line, treat it as `ask`. Never treat a missing field as permission.
 
 ## Step 2: Order
 

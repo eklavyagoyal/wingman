@@ -148,6 +148,23 @@ n_skills = len(list(ROOT.glob("skills/*/SKILL.md")))
 if not re.search(rf"\b{n_skills}\b\s*(?:skills|skills over)", readme) and f"skills-{n_skills}-" not in readme:
     fail(f"README does not state the real skill count ({n_skills})")
 
+# 4e. the Zeugnis audit contract must hold on both sides
+#
+# zeugnis writes audit.md and mappe reads it to decide whether it may attach a
+# document. If the field name drifts on one side, mappe silently stops gating
+# and a grade-5 reference goes out attached to an application.
+z = (ROOT / "skills/zeugnis/SKILL.md").read_text()
+m = (ROOT / "skills/mappe/SKILL.md").read_text()
+if "**Attach**:" not in z:
+    fail("skills/zeugnis: audit.md entries must define an `Attach:` field - mappe gates on it")
+if "`Attach`" not in m and "**Attach:**" not in m:
+    fail("skills/mappe: must read the `Attach` field from audit.md")
+for verdict in ("yes", "ask", "no"):
+    if f"`{verdict}`" not in z or f"`{verdict}`" not in m:
+        fail(f"the Attach verdict `{verdict}` is not handled on both sides of the audit contract")
+if "missing field as permission" not in m:
+    fail("skills/mappe: must state that a missing Attach field is not permission")
+
 # 5. safety invariants must survive edits
 #
 # These are the rules that stop the tool doing something irreversible on a
