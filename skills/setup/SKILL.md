@@ -69,7 +69,11 @@ Ask for status per `shared/references/work-authorization.md`. If non-EU:
 
 ### 3c — Verfügbarkeit und Vergütung
 
-Kündigungsfrist, computed earliest start date, Gehaltsvorstellung and floor in **Jahresbrutto**, and current package components (base, 13th month, bonus, bAV, VWL) so offers can be compared properly later. Reference `shared/references/de-market.md`.
+Kündigungsfrist, computed earliest start date, Gehaltsvorstellung, and the **current package** — base, 13th month, bonus, bAV, VWL — in **Jahresbrutto** throughout. Reference `shared/references/de-market.md`.
+
+The current package is not optional politeness. `evaluate` Block E reads it to say whether a role is a step up, lateral, or step down on the total, which is the comparison that actually decides an application. Without it the evaluation can only say "at market" and leave the candidate to do that arithmetic.
+
+**The walk-away floor goes in `preferences.md`, not here** — `job-search` screens against it and `evaluate` caps the score below it. Write it in one place only.
 
 If the user does not know their market rate, offer to research it for their title and region rather than letting them name a number blind.
 

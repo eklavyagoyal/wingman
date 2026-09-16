@@ -119,9 +119,10 @@ See `work-authorization.md`. For a non-EU degree, check anabin during setup, not
 
 - **Kündigungsfrist**: [e.g. 3 Monate zum Quartalsende]
 - **Frühestmöglicher Eintrittstermin**: [computed from the notice period]
-- **Gehaltsvorstellung**: [X].000 EUR brutto p. a.
-- **Untergrenze**: [X].000 EUR brutto p. a.
-- **Aktuelle Vergütungsstruktur**: [base, 13th month, bonus, bAV, VWL]
+- **Gehaltsvorstellung**: [X].000 EUR brutto p. a. — the number that goes on a form or in a letter
+- **Aktuelle Vergütungsstruktur**: [base, 13th month, bonus, bAV, VWL] — read by `evaluate` Block E to say whether a role is a step up, lateral, or step down. Without it, an evaluation can only compare to market and the candidate does that arithmetic themselves.
+
+The **walk-away floor** lives in `preferences.md`, not here. One home for it: `job-search` screens against it and `evaluate` caps the score below it, and a threshold stored twice drifts.
 
 ### Bewerbungspräferenzen
 

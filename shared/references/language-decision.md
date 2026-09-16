@@ -38,7 +38,16 @@ Read the posting and score these signals. Do not guess — quote what you actual
 
 ## Step 2: Gate on the Candidate's Actual German Level
 
-Read `Sprachen` from `DATA_DIR/profile.md` (set during setup).
+First read **`Bevorzugte Bewerbungssprache`** from `DATA_DIR/profile.md`. If the candidate has stated a standing preference, it carries real weight and you do **not** re-litigate it per job — setup promised to ask once and remember, and asking again on every posting is how this becomes annoying enough to abandon.
+
+Treat it as a strong input, not a veto:
+
+- **`Deutsch` or `Englisch`** — go with it, and say in one line that you did and why it fits. Raise it only when the evidence flatly contradicts it: a standing `Englisch` against an ad that says „Bewerbung bitte auf Deutsch" is worth one sentence, then the candidate decides.
+- **`je nach Anzeige`** — no standing preference. Weigh the eight signals normally.
+
+The preference never overrides the level gate below. A candidate can prefer German and still be B1 against a C1 ad; preferring it does not make the letter honest.
+
+Then read `Sprachen` from `DATA_DIR/profile.md` (set during setup).
 
 This gate is not optional. **Never produce a German application that implies a higher level of German than the candidate declared, without telling them first.** A flawless Anschreiben from someone at B1 gets an interview they cannot survive, and the recruiter will notice the gap in the first phone screen.
 

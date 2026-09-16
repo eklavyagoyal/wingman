@@ -33,6 +33,10 @@ Per `shared/references/work-authorization.md`. State whether this is a blocker, 
 ### E — Compensation
 Per `shared/references/de-market.md`. Advertised range or Tarif band, computed Jahresbrutto **including the 13th month where applicable**, Urlaubstage, bAV/VWL, and how it compares to researched market rate for the title and region. Name your sources and the date.
 
+**Then compare it to what the candidate earns now.** Read `Aktuelle Vergütungsstruktur` from `profile.md` and state plainly whether the role is a **step up, lateral, or step down** on the total package — not on base salary, which is how a 13th month or a bAV contribution hides a real cut. "€70.000 is at market for Karlsruhe" is not the useful sentence; "€70.000 against your current €72.000 plus a 13th month, so roughly €8.000 down on the package" is.
+
+If the profile has no current package, say so rather than comparing to market alone and leaving the candidate to do the arithmetic that decides this.
+
 ### F — Employer signal
 kununu rating and what recent reviews actually complain about. Betriebsrat. Zeitarbeit or Personalvermittlung detection. Impressum present. Anything in the ad that reveals culture — „Überstunden abgegolten", „Duz-Kultur", „Familienunternehmen in 4. Generation".
 

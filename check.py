@@ -165,6 +165,29 @@ for verdict in ("yes", "ask", "no"):
 if "missing field as permission" not in m:
     fail("skills/mappe: must state that a missing Attach field is not permission")
 
+# 4f. no write-only fields in the profile template
+#
+# A field setup collects and nothing ever reads is worse than a missing one:
+# the candidate is asked for it, believes it is being used, and it silently
+# changes nothing. Three of these were shipped - the current compensation
+# package, the standing language preference, and a duplicated salary floor -
+# and one of them was the input to this project's central decision.
+tmpl = (ROOT / "shared/templates/profile.md").read_text()
+facts = tmpl.split("## German Application Facts")[-1]
+readers = "\n".join(
+    p.read_text() for p in [*ROOT.glob("skills/**/*.md"), *ROOT.glob("shared/references/*.md")]
+)
+COMPUTED = {"Frühestmöglicher Eintrittstermin"}  # derived, never asked or read
+for field in re.findall(r"^- \*\*([^*]+)\*\*", facts, re.M):
+    name = field.split("(")[0].strip()
+    if name in COMPUTED:
+        continue
+    # A reader counts if any distinctive word of the field name appears
+    # outside the template itself.
+    words = [w for w in re.findall(r"[A-Za-zÄÖÜäöüß]{6,}", name)]
+    if words and not any(w in readers for w in words):
+        fail(f"profile template defines '{name}' but no skill or reference ever reads it")
+
 # 5. safety invariants must survive edits
 #
 # These are the rules that stop the tool doing something irreversible on a
