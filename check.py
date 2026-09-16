@@ -188,6 +188,27 @@ for field in re.findall(r"^- \*\*([^*]+)\*\*", facts, re.M):
     if words and not any(w in readers for w in words):
         fail(f"profile template defines '{name}' but no skill or reference ever reads it")
 
+# 4g. every tracker column must have a writer and the schema must be agreed
+#
+# Several skills append to tracker.md and two read it. A column no skill fills
+# is a cut `patterns` silently cannot compute; a column patterns expects and
+# the schema lacks is worse. Both shipped: Board, Reply and the ATS were
+# promised as analyses with nowhere to read them from.
+tracker_ref = (ROOT / "shared/references/tracker.md").read_text()
+hdr = re.search(r"^\| Job \|(.+?)\|\s*$", tracker_ref, re.M)
+if not hdr:
+    fail("shared/references/tracker.md: cannot find the canonical column header row")
+else:
+    cols = [c.strip() for c in ("Job|" + hdr.group(1)).split("|") if c.strip()]
+    writers = "\n".join(p.read_text() for p in ROOT.glob("skills/*/SKILL.md"))
+    # Columns whose writer is self-evident from the row being created at all.
+    IMPLICIT = {"Job", "Company", "Score", "Found", "Folder", "Status", "Next", "Lang", "Applied"}
+    for col in cols:
+        if col in IMPLICIT:
+            continue
+        if f"`{col}`" not in writers:
+            fail(f"tracker column '{col}' is defined in the schema but no skill is told to set it")
+
 # 5. safety invariants must survive edits
 #
 # These are the rules that stop the tool doing something irreversible on a

@@ -7,6 +7,17 @@ description: Analyze what is actually working - especially whether German or Eng
 
 Reads the whole history and finds what is working. Needs roughly 15+ applications before the numbers mean anything — **say so plainly if there are fewer**, and give the raw counts instead of percentages that imply confidence they do not have.
 
+## Step 0: Read the history
+
+| Source | Carries |
+|---|---|
+| `DATA_DIR/tracker.md` | One row per application: `Board`, `Score`, `Lang`, `Found`, `Applied`, `Reply`, `Status`. Most cuts come from here. Check it against `shared/references/tracker.md` integrity rules first — an analysis over inconsistent rows is worse than none. |
+| `DATA_DIR/job-history.md` | Everything ever seen, including what was discarded and why. The only place the **discard** rate lives. |
+| `DATA_DIR/jobs/*/applied.md` | Which ATS each application was filed through, and what was attached. Needed for the **By ATS** cut; read the folders only for that. |
+| `DATA_DIR/jobs/*/evaluation.md` | The score's reasoning, when checking whether the scoring is calibrated. |
+
+**State which cuts you could not compute, and why.** A blank `Board` column across older rows means the by-board analysis covers only part of the history — say that, with the counts, rather than presenting a partial cut as the whole picture. Silence there turns a data gap into a wrong conclusion.
+
 ## The flagship metric: DE vs EN response rate
 
 This is the question no other tool can answer, because no other tool records the language decision per application.

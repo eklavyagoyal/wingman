@@ -61,7 +61,7 @@ Then gate on the score per `shared/references/interaction.md`:
 | **3.0–4.0** | **Ask.** Show the gaps and let the user decide — apply anyway, skip, or see the full report. |
 | **< 3.0** | Recommend skipping, and say which blocker. Do not talk them into it. |
 
-Append a row to `tracker.md` per `shared/references/tracker.md`.
+Append a row to `tracker.md` per `shared/references/tracker.md`. **Set `Board`** — where this posting came from (`Arbeitsagentur`, `StepStone`, `Personio`, `LinkedIn`, `Interamt`, `Direkt`, `Netzwerk`); if the user pasted a URL with no context, infer it from the host and say which you recorded. `patterns` cannot compute response rate by board from a blank column, and the row is only cheap to fill now.
 
 ---
 

@@ -7,10 +7,16 @@
 ```markdown
 # Application Tracker
 
-| Job | Company | Score | Lang | Found | Applied | Status | Next | Folder |
-|-----|---------|:-----:|:----:|-------|---------|--------|------|--------|
-| Software Engineer (m/w/d) | Beispiel GmbH | 4.5 | DE | 2026-09-01 | 2026-09-03 | Bewerbung gesendet | Follow up 2026-09-17 | beispiel-gmbh-2026-09-01 |
+| Job | Company | Board | Score | Lang | Found | Applied | Reply | Status | Next | Folder |
+|-----|---------|-------|:-----:|:----:|-------|---------|-------|--------|------|--------|
+| Software Engineer (m/w/d) | Beispiel GmbH | Arbeitsagentur | 4.5 | DE | 2026-09-01 | 2026-09-03 | 2026-09-11 | Gespräch | Vorbereitung 2026-09-20 | beispiel-gmbh-2026-09-01 |
 ```
+
+**`Board`** — where the job was found: `Arbeitsagentur`, `StepStone`, `Personio`, `LinkedIn`, `Interamt`, `Direkt`, `Netzwerk`. Set by whichever skill created the row.
+
+**`Reply`** — the date of the first substantive reply from the employer, whatever it said. Leave blank until one arrives, and note that an `Eingangsbestätigung` is an automated receipt, **not** a reply. Set by `followup` when it classifies one.
+
+Both exist because `patterns` cannot compute a cut it has no column for. Response rate by board, and real time-to-response per employer type, are two of the analyses that make the whole history worth keeping — and a blank column is recoverable where a missing one is not.
 
 ## Status values
 
