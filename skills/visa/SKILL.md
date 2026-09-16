@@ -24,6 +24,10 @@ For a non-EU degree, and a candidate without permanent residence, this is the ga
 
 Check [anabin](https://anabin.kmk.org/anabin.html) for **both** the institution and the degree. An institution rated **H+** counts as equivalent to a German higher-education institution.
 
+> **anabin cannot be read by a plain fetch, and it fails deceptively.** Its filter pages answer HTTP 200 with about 2,500 characters that are entirely navigation — no results, no rating letters — because the search runs client-side. The template text even contains the words „Institutionen" and `H+`, so a fetched page can look like a successful lookup. Verified 2026-09-16.
+>
+> **Never report a rating you did not see in a result row.** Either drive it in the browser — `Institutionen`, then filter by country and search the institution name — or hand the candidate the two searches to run. Both are fine. Asserting `H+` from a fetched shell is not, and it is the one answer here that costs months if wrong.
+
 - **Recognized** → record it in `profile.md` and move on
 - **Not found or not equivalent** → explain the **Zeugnisbewertung** route (a statement of comparability from the ZAB), and that it takes time and a fee
 - **Cannot determine** → say so rather than guessing. Point at the ZAB. A wrong answer here costs months.

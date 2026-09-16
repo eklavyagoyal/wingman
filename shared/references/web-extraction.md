@@ -55,6 +55,22 @@ document.querySelector('[class*="description"], [class*="content"], article, mai
 
 `tabs_context` to see the browser state, `tabs_create` for a new tab, `navigate` to the target, then extract. If `tabs_context` returns nothing, ask the user to confirm the browser extension is active rather than retrying.
 
+## German official portals are client-rendered, and fail deceptively
+
+Three of the sources these skills send a user to return **HTTP 200 with a page containing no answer**, because the content loads client-side. All checked directly:
+
+| Source | Plain fetch returns |
+|---|---|
+| `anabin.kmk.org` filter pages | 200, ~2,500 chars of navigation. No result rows, no `H+` ratings — though the template text does contain the words „Institutionen" and `H+`. |
+| `make-it-in-germany.com` | 200, 118 KB of HTML, **108 characters** of visible text. |
+| `interamt.de` | 200, 96 KB, ~4,000 chars that are a „Bitte aktivieren Sie JavaScript" notice, zero job links. |
+
+The failure mode is not an error, it is a **plausible-looking page**, sometimes containing the very vocabulary you were looking for. That is how a lookup gets reported as done when nothing was read.
+
+So: **a 200 is not evidence you got an answer.** Before using a fetched page, check that it contains the specific thing you went for — a result row, a figure, a job title — and not merely the words around it. When it does not, use the browser or hand the search to the user. Prefer a source that serves plain text where one exists: `gesetze-im-internet.de` carries the statutes, and the Arbeitsagentur has a real JSON API.
+
+**Never report a value you did not actually see.** On a degree rating or a salary threshold, a confident wrong answer costs a candidate months.
+
 ## Cookie walls
 
 Unavoidable on German sites under the DSGVO, and they frequently block the content entirely until dismissed.

@@ -57,6 +57,7 @@ Quoting a stale threshold makes a candidate discard a role they are eligible for
 
 - Institutions carry a rating; **H+** means recognized as equivalent to a German higher-education institution.
 - Both the **institution** and the **degree** need to check out.
+- **It is a client-side app.** A fetch of its filter pages returns 200 and about 2,500 characters of navigation with no results in it. Use the browser, or give the candidate the searches to run — and never state a rating that did not come from a result row.
 - An unrecognized degree does not always end the matter — a **Zeugnisbewertung** (statement of comparability) from the ZAB is the usual next step.
 
 If the candidate's degree is from outside the EU and their status is not already permanent, **check anabin during setup, not during an application.** Discovering a recognition problem while a deadline is running is the worst time to discover it.
