@@ -1,0 +1,80 @@
+name: sources
+
+# Are the external sources still behaving the way the knowledge layer says?
+#
+# Never on a pull request: these failures belong to the internet, not to a
+# contributor, and blocking someone's first PR on a rotated API key would be
+# hostile. Weekly, and it opens an issue when something breaks - a red run in
+# the Actions tab that nobody opens is the same hidden failure this project
+# spends its time eliminating.
+on:
+  schedule:
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  live-sources:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Do the external sources still behave as documented?
+        id: preflight
+        run: |
+          set -o pipefail
+          node tools/preflight.mjs --sources | tee /tmp/preflight.log
+        continue-on-error: true
+
+      - name: External URLs still resolve
+        run: python3 tools/check-links.py
+        continue-on-error: true
+
+      - name: Open an issue if a source broke
+        if: steps.preflight.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const log = fs.readFileSync('/tmp/preflight.log', 'utf8');
+            const title = 'Preflight: an external source stopped behaving as documented';
+            const { data: open } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'preflight',
+            });
+            const body = [
+              'The weekly source preflight failed. Something the knowledge layer',
+              'asserts about an external source is no longer true.',
+              '',
+              '```',
+              log.trim(),
+              '```',
+              '',
+              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              '',
+              'Each failure line carries its own remediation. The likeliest cause is',
+              'the Arbeitsagentur client key rotating, which turns job-search\'s largest',
+              'source into an empty result set — and an empty result set reads as an',
+              'empty market rather than a broken request.',
+            ].join('\n');
+            if (open.length) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: open[0].number, body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, body, labels: ['preflight'],
+              });
+            }
+
+      - name: Fail the run if a source broke
+        if: steps.preflight.outcome == 'failure'
+        run: exit 1

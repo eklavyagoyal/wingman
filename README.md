@@ -250,7 +250,7 @@ Everything lives in `.wingman/` on your machine, gitignored. No account, no tele
 
 ## Status
 
-**v0.6.0** — mostly instruction files: 14 skills over a German knowledge layer, plus a zero-dependency PDF renderer.
+**v0.7.0** — mostly instruction files: 14 skills over a German knowledge layer, plus a zero-dependency PDF renderer.
 
 ```bash
 python3 check.py                    # structure, dead links, DATA_DIR drift, 13 safety invariants
@@ -258,6 +258,7 @@ node tools/mappe.mjs --selftest     # 27 assertions - the PDF renderer
 node tools/posting.mjs --selftest   # 23 assertions - the posting extractor
 node tools/test-scout.mjs           # 15 assertions - form scouting, in headless Chrome
 node tools/arbeitsagentur.mjs --selftest   # 19 assertions - the federal job board API
+node tools/preflight.mjs            # your machine, and whether the live sources still behave
 ```
 
 All three run in CI on every push and pull request. The renderer test fails rather than skips if the runner has no browser, so a broken renderer cannot pass quietly.

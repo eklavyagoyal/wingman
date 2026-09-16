@@ -67,6 +67,11 @@ jobs:
           node tools/arbeitsagentur.mjs --selftest | tee /tmp/ba.log
           grep -q '^all passed' /tmp/ba.log
 
+      # Network-free half: confirms the tools' dependency assumptions hold on
+      # Linux, not just on the maintainer's Mac.
+      - name: Local tooling preflight
+        run: node tools/preflight.mjs --env
+
       - name: Command surface is intact
         run: |
           expected=14

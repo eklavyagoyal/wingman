@@ -16,6 +16,7 @@ The installed plugin is a **cache copy**, not a link to your checkout. Edits do 
 # 1. edit, then verify the repo is still coherent
 python3 check.py                  # structure, dead links, DATA_DIR drift, safety invariants
 node tools/mappe.mjs --selftest   # the PDF renderer
+node tools/preflight.mjs          # is your machine set up, and are the sources still behaving?
 
 # 2. push the installed copy forward
 claude plugin marketplace update wingman
