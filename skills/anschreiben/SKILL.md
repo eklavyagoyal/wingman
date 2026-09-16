@@ -77,7 +77,9 @@ Banned: „hiermit bewerbe ich mich", "I am excited about the opportunity", "ali
 
 ## Step 6: Present and iterate
 
-Show the letter, note which achievements were used and why, and give the file path. Offer adjustments via `AskUserQuestion`: tone, which achievements, length, formality.
+Show the letter, note which achievements were used and why, and give the file path. Then **stop** — add one line on anything you were unsure of, and leave it there.
+
+Do not open a picker asking whether the letter is alright. The angle was already chosen in Step 3; asking again afterwards re-opens a settled decision and costs the candidate an answer for nothing. If they want a different register or a different achievement in the lead, those are real options and a structured choice is right **then**.
 
 ---
 

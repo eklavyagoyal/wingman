@@ -25,6 +25,14 @@ When a decision has a small set of real options, present it as a structured choi
 - Which fields on a form map to which stored value
 - Anything already recorded in `language.md`, `profile.md`, or `application-data.md`
 
+## Do not use a picker to ask whether anything is wrong
+
+A structured choice is for a decision with real options. "Is this document alright?" is not that — it has no options, and a picker turns a finished piece of work into another thing to answer. After producing a CV, a letter, or a Mappe:
+
+> Show it. Say in one line what you would change if pushed. Stop.
+
+If the candidate then wants something different, *that* is when options are real — which achievement to lead with instead, a warmer or cooler register — and a picker earns its place. Offering four canned adjustments to a document somebody is already happy with is friction dressed as helpfulness, and it trains them to dismiss the prompts that matter.
+
 ## Ask once, then remember
 
 Every answer that could recur gets written to disk the moment it is given:

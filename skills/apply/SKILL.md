@@ -52,6 +52,16 @@ If `application-data.md` exists, load it. Otherwise extract what you can from th
 
 **No US EEO block.** German forms do not carry voluntary race/ethnicity self-identification, and importing those defaults into a German application is wrong. `Schwerbehinderung` is voluntary and the candidate's disclosure to make — default to no answer unless they said otherwise.
 
+## Step 2b: Say what is coming
+
+Before touching the form, tell the candidate the shape of it in two lines — `shared/references/interaction.md` asks for this on long flows, and this is the longest one:
+
+> Two stops from here. First the fill plan, everything I intend to put in every field, for you to correct. Then the form itself, filled and screenshotted, for you to submit.
+>
+> I do not click Submit, tick the DSGVO box, or upload a file. Those are yours.
+
+On a multi-page wizard, say how many pages. Someone who knows there are six pages will sit through six; someone who thought there was one gives up on page three.
+
 ## Step 3: Navigate and scout
 
 Browser setup per `shared/references/web-extraction.md`. Detect the ATS from the URL per `shared/references/ats.md`.

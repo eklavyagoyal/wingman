@@ -113,7 +113,9 @@ Naming the uncovered gaps matters more than hiding them: it is what the intervie
 
 ## Step 7: Iterate
 
-Offer adjustments with `AskUserQuestion` — emphasis, tone, length, specific bullets.
+Show the document and **stop**. Add one line on what you would change if pushed — a bullet you were unsure of, an ordering call that could go either way — so the candidate knows where the soft spots are without being asked to rule on them.
+
+Do **not** open a picker asking whether it is alright: that is not a decision with options, and per `shared/references/interaction.md` it makes a finished document into another thing to answer. If they do want a change, options become real and a structured choice earns its place then.
 
 If `mappe` reported a two-page Lebenslauf with a short orphan page, that is a **required** iteration, not optional polish. Cut per the order above until it is one full page or two full pages.
 
