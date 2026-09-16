@@ -18,6 +18,12 @@ ROOT = Path(__file__).resolve().parent.parent
 UA = "Mozilla/5.0 (compatible; wingman-linkcheck/1.0; +https://github.com/eklavyagoyal/wingman)"
 SKIP = ("example.com", "example.de", "beispiel.", "localhost", "127.0.0.1", "<", "{", "firma")
 
+# Hosts that refuse datacenter IP ranges. They resolve fine from a home
+# connection, so a failure here from CI says nothing about the link. Reported,
+# never failed on - otherwise the weekly run cries wolf and gets ignored,
+# which costs more than the check is worth.
+BLOCKS_DATACENTRE = ("gesetze-im-internet.de",)
+
 
 def urls():
     found = {}
@@ -64,13 +70,16 @@ def main():
             continue
         # 403/405/429 from a public page is bot filtering, not rot: these hosts
         # serve a browser fine. Report them, do not fail the run on them.
+        if any(h in u for h in BLOCKS_DATACENTRE):
+            suspect.append(f"  {status or 'ERR'} {u}\n        blocks datacenter IPs; verify from a home connection")
+            continue
         if status in (403, 405, 429):
             suspect.append(f"  {status} {u}\n        in {where}")
         else:
             dead.append(f"  {status or 'ERR'} {err} {u}\n        in {where}")
 
     if suspect:
-        print("Bot-filtered - serves a real browser, not this checker:")
+        print("Filtered by the host, not broken - verify from a browser or a home connection:")
         print("\n".join(suspect), "\n")
     if dead:
         print("DEAD:")

@@ -41,7 +41,11 @@ The threshold is **not a number in the law** — it is a percentage of one, and 
 
 So: fetch the current **Beitragsbemessungsgrenze (allgemeine Rentenversicherung, West)** for the year in question, multiply, and **state the arithmetic** — the figure, the year, and the source date. A candidate can check multiplication; they cannot check a number you simply asserted.
 
-> **Fetch §18g itself to confirm the percentages** — `gesetze-im-internet.de` serves it as plain text with no JavaScript, so it is reliably readable. **Do not rely on `make-it-in-germany.com`**: the page renders client-side and a plain fetch returns 118 KB containing 108 characters of text. Verified 2026-09-16. If that is your only source, open it in the browser; do not fall back to a remembered figure, which is exactly the failure this section exists to prevent.
+> **The percentages above are quoted from the statute text and were confirmed on 2026-09-16.** They are the figures to use. `gesetze-im-internet.de` serves §18g as plain text and is worth re-fetching to confirm — but **it blocks datacenter IP ranges**, so the fetch fails from GitHub Actions, cloud dev environments, and Claude Code on the web while working fine from a home connection. Verified from both.
+>
+> So: if the fetch succeeds, confirm against it. If it fails, **use the percentages recorded here and say when they were last confirmed** — that is honest and actionable. What you must never do is substitute a remembered figure for either, which is the failure this section exists to prevent.
+>
+> **Do not rely on `make-it-in-germany.com`** at all: it renders client-side and a plain fetch returns 118 KB containing 108 characters of text.
 
 Quoting a stale threshold makes a candidate discard a role they are eligible for, or chase one they are not. Both cost months.
 

@@ -40,7 +40,11 @@ Per §18g AufenthG: a recognized degree plus a salary at or above a threshold. T
 
 **Compute the threshold, never recall it.** Per `work-authorization.md`, §18g AufenthG sets it as a percentage — **50 %** generally, **45,3 %** for Engpassberufe and for degrees awarded within three years — of the annual Beitragsbemessungsgrenze in der allgemeinen Rentenversicherung. Fetch the current Beitragsbemessungsgrenze, multiply, and **show the arithmetic**: the percentage, the base, the result, the year, and the date you checked. A candidate can check multiplication; they cannot check an asserted number.
 
-`gesetze-im-internet.de/aufenthg_2004/__18g.html` serves the percentages as plain text. `make-it-in-germany.com` does not — it renders client-side and a plain fetch yields 108 characters, so use the browser there or skip it. Never fall back to a remembered figure: a stale number makes a candidate discard a role they qualify for, or chase one they do not.
+The percentages are recorded in `work-authorization.md` with the date they were confirmed, and those are the figures to use. `gesetze-im-internet.de/aufenthg_2004/__18g.html` serves §18g as plain text if you want to re-confirm, but **it blocks datacenter IPs** — so expect the fetch to fail on Claude Code for web or in a cloud dev environment, and succeed from a home connection. A failed fetch is not a blocker: use the recorded percentages and state when they were last confirmed.
+
+`make-it-in-germany.com` is not usable either way — client-rendered, 108 characters to a plain fetch.
+
+Never substitute a remembered figure. A stale number makes a candidate discard a role they qualify for, or chase one they do not.
 
 Also check, before concluding anyone is blocked:
 - **IT specialists without a degree** can qualify on roughly three years of relevant recent experience under §19c(2) AufenthG with §6 BeschV, since the 2023 reform.

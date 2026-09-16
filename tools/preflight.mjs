@@ -161,7 +161,8 @@ async function checkSources() {
       : record("FAIL", "§18g AufenthG", `50 %: ${has50}, 45,3 %: ${has453}`,
           "The statute was amended. Update the threshold table in shared/references/work-authorization.md from the current text - do not carry the old percentages forward.");
   } else {
-    record("WARN", "§18g AufenthG", law.error || `HTTP ${law.status}`, "Transient, most likely.");
+    record("WARN", "§18g AufenthG", law.error || `HTTP ${law.status}`,
+      "gesetze-im-internet.de blocks datacenter IP ranges, so this fails from CI and cloud dev environments and succeeds from a home connection. Not a defect: the percentages are recorded in shared/references/work-authorization.md with the date confirmed, and the skills are told to use those when the fetch is unavailable. Re-run locally to actually re-confirm the statute.");
   }
 
   // A quirk the docs rely on. If it is fixed, the docs are the thing that is wrong.
