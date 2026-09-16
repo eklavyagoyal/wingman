@@ -34,7 +34,9 @@ Do this at setup, not against a deadline.
 
 Per §18g AufenthG: a recognized degree plus a salary at or above a threshold. There are two thresholds — a general one, and a lower one for shortage occupations (IT, engineering, medicine, mathematics, natural sciences) and for young professionals whose degree is under three years old.
 
-**The thresholds are re-set every January**, indexed to the Beitragsbemessungsgrenze. **Look up the current figure** at `make-it-in-germany.com` or the BAMF, state the date checked, and tell the user it moves annually. Never quote one from memory — a stale number makes a candidate discard a role they qualify for.
+**Compute the threshold, never recall it.** Per `work-authorization.md`, §18g AufenthG sets it as a percentage — **50 %** generally, **45,3 %** for Engpassberufe and for degrees awarded within three years — of the annual Beitragsbemessungsgrenze in der allgemeinen Rentenversicherung. Fetch the current Beitragsbemessungsgrenze, multiply, and **show the arithmetic**: the percentage, the base, the result, the year, and the date you checked. A candidate can check multiplication; they cannot check an asserted number.
+
+`gesetze-im-internet.de/aufenthg_2004/__18g.html` serves the percentages as plain text. `make-it-in-germany.com` does not — it renders client-side and a plain fetch yields 108 characters, so use the browser there or skip it. Never fall back to a remembered figure: a stale number makes a candidate discard a role they qualify for, or chase one they do not.
 
 Also check, before concluding anyone is blocked:
 - **IT specialists without a degree** can qualify on roughly three years of relevant recent experience under §19c(2) AufenthG with §6 BeschV, since the 2023 reform.

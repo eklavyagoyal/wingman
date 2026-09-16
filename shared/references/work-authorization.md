@@ -24,14 +24,26 @@ Stored in `profile.md` under `Arbeitserlaubnis`.
 
 ## Blaue Karte EU — the mechanism
 
-Governed by [§18g AufenthG](https://www.gesetze-im-internet.de/aufenthg_2004/__18g.html). The current salary thresholds are published by [Make it in Germany](https://www.make-it-in-germany.com/en/visa-residence/types/eu-blue-card) — look them up, never quote them from memory. Two hard requirements:
+Governed by [§18g AufenthG](https://www.gesetze-im-internet.de/aufenthg_2004/__18g.html). Two hard requirements:
 
 1. **A recognized or comparable university degree** — see anabin below.
 2. **A gross annual salary at or above a threshold.**
 
-Two thresholds exist: a **general** one (Regelberufe) and a **lower** one for **shortage occupations** (Engpassberufe — IT, engineering, medicine, mathematics, natural sciences, and others) and for **young professionals** whose degree was awarded within the last three years.
+### Compute the threshold, do not recall it
 
-> **The thresholds are re-set every January**, indexed to the Beitragsbemessungsgrenze. Do not quote a number from memory and do not let the user rely on one. Look up the current figures at `make-it-in-germany.com` or the BAMF site at decision time, state the date you checked, and say plainly that the figure moves annually. Quoting a stale threshold can make a candidate discard a role they are actually eligible for, or chase one they are not.
+The threshold is **not a number in the law** — it is a percentage of one, and only the input changes annually. The law states the percentages directly, and they have been stable:
+
+| Case | Threshold (§18g AufenthG) |
+|---|---|
+| General (Regelberufe) | **at least 50 %** of the annual Beitragsbemessungsgrenze, allgemeine Rentenversicherung |
+| **Engpassberufe** (IT, engineering, medicine, mathematics, natural sciences and others per the ISCO-08 list) | **at least 45,3 %** of the same |
+| **Young professionals** — degree awarded within the last three years | **at least 45,3 %** |
+
+So: fetch the current **Beitragsbemessungsgrenze (allgemeine Rentenversicherung, West)** for the year in question, multiply, and **state the arithmetic** — the figure, the year, and the source date. A candidate can check multiplication; they cannot check a number you simply asserted.
+
+> **Fetch §18g itself to confirm the percentages** — `gesetze-im-internet.de` serves it as plain text with no JavaScript, so it is reliably readable. **Do not rely on `make-it-in-germany.com`**: the page renders client-side and a plain fetch returns 118 KB containing 108 characters of text. Verified 2026-09-16. If that is your only source, open it in the browser; do not fall back to a remembered figure, which is exactly the failure this section exists to prevent.
+
+Quoting a stale threshold makes a candidate discard a role they are eligible for, or chase one they are not. Both cost months.
 
 **IT specialists without a degree**: since the 2023 Fachkräfteeinwanderungsgesetz reform, non-EU IT professionals can qualify via demonstrated professional experience (roughly three years of relevant recent experience) instead of a degree, under §19c(2) AufenthG together with §6 BeschV. Worth checking before concluding a degreeless candidate is blocked.
 
